@@ -43,3 +43,8 @@ button {
 button:hover {
     background-color: #555;
 }
+
+#message-container {
+    white-space: pre-line; /* To preserve line breaks and spacing in the message */
+    /* Add any other styling as needed */
+}
