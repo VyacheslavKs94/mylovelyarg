@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Rotating text for the reveal button
     const enterTranslations = ['Enter', 'Entrar', 'Войти', 'Gir', 'Betreten', 'Entrer'];
     let currentIndex = 0;
     const button = document.getElementById('reveal-button');
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
             currentIndex = (currentIndex + 1) % enterTranslations.length;
         }, 300);
 
-        // Language redirection on reveal-button click
         button.addEventListener('click', function() {
             var userLang = navigator.language || navigator.userLanguage; 
             userLang = userLang.split('-')[0];
@@ -27,9 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Specific functionalities for 'cctv.html' page
     if (window.location.pathname.includes('cctv.html')) {
-        // Random text items for the mosaic background
         const phrases = [
             'Can <strong>anyone</strong> see the truth?', 
             'Is <strong>trust</strong> ever justified?',
@@ -53,13 +49,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Handling image clicks to open in new window
         const images = document.querySelectorAll('.gallery-img');
         images.forEach(img => {
             img.addEventListener('click', function() {
                 window.open(this.src, '_blank');
             });
         });
+
+        // New code for randomizing the position of the "donotlook" link
+        var randomLink = document.querySelector('.random-link');
+        if (randomLink) {
+            randomLink.style.setProperty('--random-top', Math.random());
+            randomLink.style.setProperty('--random-left', Math.random());
+        }
     }
 
     // Typewriter effect for the message on 'ctao' pages
@@ -92,11 +94,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 let nextChar = text[index];
                 let nextIndex = index + 1;
     
-                // Check if the current character is the start of an HTML tag
+
                 if (nextChar === '<') {
                     let tagEnd = text.indexOf('>', index);
                     if (tagEnd >= 0) {
-                        nextChar = text.substring(index, tagEnd + 1); // Include entire tag
+                        nextChar = text.substring(index, tagEnd + 1); 
                         nextIndex = tagEnd + 1;
                     }
                 }
