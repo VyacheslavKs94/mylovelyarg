@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
     
                 messageContainer.innerHTML += nextChar;
-                setTimeout(() => typeWriter(text, nextIndex), 50);
+                setTimeout(() => typeWriter(text, nextIndex), 10);
             }
         }
     });
