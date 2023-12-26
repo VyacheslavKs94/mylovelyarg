@@ -39,9 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const textItem = document.createElement('div');
                 textItem.classList.add('text-item');
                 textItem.innerHTML = phrases[Math.floor(Math.random() * phrases.length)];
-                textItem.style.left = `${Math.random() * 100}%`;
-                textItem.style.top = `${Math.random() * 100}%`;
-        
+                textItem.style.left = `${Math.random() * 100}vw`;
+                textItem.style.top = `${Math.random() * 100}vh`;
                 mosaicBackground.appendChild(textItem);
             }
         }

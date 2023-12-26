@@ -39,17 +39,17 @@ body, html {
     user-select: none;
     pointer-events: none;
     font-family: 'Rubik', sans-serif; /* Ensuring consistent font */
-    max-width: 300px; /* Limiting width for better layout */
     line-height: 1.4; /* Adjusting line height for readability */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+    white-space: nowrap; /* Keep text in a single line */
+    max-width: 80vw; /* Maximum width relative to viewport width */
 }
 
 @media (max-width: 768px) {
-    .mosaic-background {
-        background-size: contain; /* Adjust size to contain the image within the viewport */
-    }
-    
-    .gallery-img {
-        width: 80%; /* Larger images on smaller screens */
+    .text-item {
+        font-size: 14px; /* Smaller font size for mobile */
+        line-height: 1.6; /* Slightly more line spacing */
     }
 }
 
