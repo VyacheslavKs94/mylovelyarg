@@ -27,6 +27,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    if (window.location.pathname.includes('cctv.html')) {
+        // Attach click event listener to images
+        const images = document.querySelectorAll('.gallery-img');
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                window.open(this.src, '_blank');
+            });
+        });
+    }
+
     // Typewriter effect for the message
     var pageLanguage = document.documentElement.lang;
     var messages = {
@@ -69,10 +79,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Handling image clicks to open in new window
-    const images = document.querySelectorAll('.gallery-img');
-    images.forEach(img => {
-        img.addEventListener('click', function() {
-            window.open(this.src, '_blank');
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('.gallery-img');
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                window.open(this.src, '_blank');
+            });
         });
     });
 });
