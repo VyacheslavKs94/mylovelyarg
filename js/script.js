@@ -1,12 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Rotating text for the reveal button
     const enterTranslations = ['Enter', 'Entrar', 'Войти', 'Gir', 'Betreten', 'Entrer'];
     let currentIndex = 0;
     const button = document.getElementById('reveal-button');
-    setInterval(() => {
-        button.textContent = enterTranslations[currentIndex];
-        currentIndex = (currentIndex + 1) % enterTranslations.length;
-    }, 300); // Change text every 300 ms
+
+    if (button) {
+        setInterval(() => {
+            button.textContent = enterTranslations[currentIndex];
+            currentIndex = (currentIndex + 1) % enterTranslations.length;
+        }, 300);
+    }
 
     // Language redirection on reveal-button click
     const revealButton = document.getElementById('reveal-button');
@@ -15,19 +17,35 @@ document.addEventListener('DOMContentLoaded', function() {
             var userLang = navigator.language || navigator.userLanguage; 
             userLang = userLang.split('-')[0];
 
-            switch(userLang) {
-                case 'ru': window.location.href = 'ctao_ru.html'; break;
-                case 'es': window.location.href = 'ctao_es.html'; break;
-                case 'tr': window.location.href = 'ctao_tr.html'; break;
-                case 'en': window.location.href = 'ctao.html'; break;
-                case 'de': window.location.href = 'ctao_de.html'; break;
-                case 'fr': window.location.href = 'ctao_fr.html'; break;
-                default: window.location.href = 'ctao.html';
-            }
+            // ... existing switch statement ...
         });
     }
 
     if (window.location.pathname.includes('cctv.html')) {
+        const phrases = [
+            'Can <strong>anyone</strong> see the truth?', 
+            'Is <strong>trust</strong> ever justified?',
+            'What lies <strong>in</strong> the shadows?',
+            'Who really controls <strong>Sterling</strong>?',
+            'Why <strong>conceal</strong> your doubts?',
+            'Are <strong>the</strong> secrets safe?',
+            'What\'s <strong>hidden</strong> beneath the surface?',
+            'Do <strong>truths</strong> ever emerge?'
+        ];
+    
+        const mosaicBackground = document.querySelector('.mosaic-background');
+        if (mosaicBackground) {
+            for (let i = 0; i < 100; i++) {
+                const textItem = document.createElement('div');
+                textItem.classList.add('text-item');
+                textItem.innerHTML = phrases[Math.floor(Math.random() * phrases.length)];
+                textItem.style.left = `${Math.random() * 100}%`;
+                textItem.style.top = `${Math.random() * 100}%`;
+        
+                mosaicBackground.appendChild(textItem);
+            }
+        }
+
         // Attach click event listener to images
         const images = document.querySelectorAll('.gallery-img');
         images.forEach(img => {
@@ -50,13 +68,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var messageContainer = document.getElementById('message-container');
     var message = messages[pageLanguage] || messages['en'];
-    var hasVisited = localStorage.getItem('hasVisited-' + pageLanguage);
 
-    if (!hasVisited) {
-        typeWriter(message, 0);
-        localStorage.setItem('hasVisited-' + pageLanguage, 'true');
-    } else {
-        messageContainer.innerHTML = message;
+    if (messageContainer) {
+        if (!hasVisited) {
+            typeWriter(message, 0);
+            localStorage.setItem('hasVisited-' + pageLanguage, 'true');
+        } else {
+            messageContainer.innerHTML = message;
+        }
     }
 
     function typeWriter(text, index) {
@@ -77,6 +96,31 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => typeWriter(text, nextIndex), 50);
         }
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const phrases = [
+            'Can <strong>anyone</strong> see the truth?', 
+            'Is <strong>trust</strong> ever justified?',
+            'What lies <strong>in</strong> the shadows?',
+            'Who really controls <strong>Sterling</strong>?',
+            'Why <strong>conceal</strong> your doubts?',
+            'Are <strong>the</strong> secrets safe?',
+            'What\'s <strong>hidden</strong> beneath the surface?',
+            'Do <strong>truths</strong> ever emerge?'
+        ];
+    
+        const mosaicBackground = document.querySelector('.mosaic-background');
+    
+        for (let i = 0; i < 100; i++) {
+            const textItem = document.createElement('div');
+            textItem.classList.add('text-item');
+            textItem.innerHTML = phrases[Math.floor(Math.random() * phrases.length)];
+            textItem.style.left = `${Math.random() * 100}%`;
+            textItem.style.top = `${Math.random() * 100}%`;
+    
+            mosaicBackground.appendChild(textItem);
+        }
+    });
     
     // Handling image clicks to open in new window
     document.addEventListener('DOMContentLoaded', function() {

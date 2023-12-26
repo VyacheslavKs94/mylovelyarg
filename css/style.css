@@ -26,8 +26,31 @@ body, html {
     height: 100%;
     z-index: 0;
     opacity: 0.4;
-    background-image: url('../img/areyousure.png'); /* Path to your composite image */
-    background-repeat: repeat;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    pointer-events: none; /* Allows clicks to pass through */
+}
+
+.text-item {
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    user-select: none;
+    pointer-events: none;
+    font-family: 'Rubik', sans-serif; /* Ensuring consistent font */
+    max-width: 300px; /* Limiting width for better layout */
+    line-height: 1.4; /* Adjusting line height for readability */
+}
+
+@media (max-width: 768px) {
+    .mosaic-background {
+        background-size: contain; /* Adjust size to contain the image within the viewport */
+    }
+    
+    .gallery-img {
+        width: 80%; /* Larger images on smaller screens */
+    }
 }
 
 
@@ -51,12 +74,6 @@ body, html {
 
 .gallery-img:hover {
     transform: scale(1.05); /* Slightly enlarge on hover */
-}
-
-@media (max-width: 768px) {
-    .gallery-img {
-        width: 80%; /* Larger images on smaller screens */
-    }
 }
 
 .welcome-message, .message {
