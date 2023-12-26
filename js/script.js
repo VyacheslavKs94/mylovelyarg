@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const enterTranslations = ['Enter', 'Entrar', 'Войти', 'Gir', 'Betreten', 'Entrer']; // English, Spanish, Russian, Turkish, German, French
+    let currentIndex = 0;
+    const button = document.getElementById('reveal-button');
+
+    setInterval(() => {
+        button.textContent = enterTranslations[currentIndex];
+        currentIndex = (currentIndex + 1) % enterTranslations.length;
+    }, 300); // Change text every second
+});
+
+document.addEventListener('DOMContentLoaded', function() {
     var revealButton = document.getElementById('reveal-button');
     if (revealButton) {
         revealButton.addEventListener('click', function() {
@@ -34,31 +45,32 @@ document.addEventListener('DOMContentLoaded', function() {
     var pageLanguage = document.documentElement.lang;
     var messages = {
         'en': "<strong>Confidential Transmission to All Operatives</strong>\n\nAttention <strong><em>Operatives</em></strong>,\n\nThis is <strong>Sterling</strong>. A situation is unfolding that demands your keen observation. It's a pivotal moment requiring your insight and readiness. Someone new is about to step into the light, their expertise in ███████ and █████ ███████████ is unlike anything we've seen.\n\nI will try to share more information on <strong>Friday, 29th</strong>. My sources have unearthed a hint that will lead us to the next phase of our operation. This is just a fragment, but it's vital to our larger agenda.\n\nRemember, discretion is our backbone. Stay sharp and ready. I count on your vigilance.\n\nSterling out.\n\nEnd of Transmission.",
-        'es': "<strong>Transmisión confidencial a todos los Operativos</strong>\n\nAtención <strong><em>Operativos</em></strong>,\n\nAquí <strong>Sterling</strong>. Se está desarrollando una situación que requiere vuestra aguda observación. Es un momento crucial que exige vuestra perspicacia y preparación. Alguien nuevo está a punto de salir a la luz, su experiencia en ███████ y █████ ███████████ es diferente a todo lo que hemos visto.\n\nIntentaré compartir más información el <strong>viernes, 29</strong>. Mis fuentes han desenterrado una pista que nos llevará a la próxima fase de nuestra operación. Esto es solo un fragmento, pero es vital para nuestra agenda más amplia.\n\nRecuerden, la discreción es nuestra columna vertebral. Manténganse atentos y listos. Cuento con vuestra vigilancia.\n\nSterling fuera.\n\nFin de la Transmisión.",
-        'ru': "<strong>Конфиденциальная передача всем оперативникам</strong>\n\nВнимание <strong><em>оперативникам</em></strong>,\n\nЭто <strong>Стерлинг</strong>. Разворачивается ситуация, требующая вашего пристального внимания. Это ключевой момент, требующий вашего понимания и готовности. Кто-то новый собирается выйти на свет, его специализация в ███████ и █████ ███████████ не похожа ни на что, что мы видели ранее.\n\nЯ постараюсь поделиться большей информацией в <strong>пятницу, 29-го</strong>. Мои источники нашли подсказку, которая приведет нас к следующей фазе нашей операции. Это всего лишь фрагмент, но он жизненно важен для нашей более широкой агенды.\n\nПомните, дискреция - это наш костяк. Оставайтесь бдительными и готовыми. Я рассчитываю на вашу бдительность.\n\nСтерлинг вышел.\n\nКонец передачи.",
-        'tr': "<strong>Tüm Operatiflere Gizli İletişim</strong>\n\nDikkat <strong><em>Operatifler</em></strong>,\n\nBurada <strong>Sterling</strong>. Dikkatinizi gerektiren bir durum gelişiyor. Bu, içgörünüzü ve hazırlığınızı gerektiren kritik bir an. Işığa adım atmak üzere olan yeni biri var, onların ███████ ve █████ ███████████ konusundaki uzmanlığı daha önce hiç karşılaşmadığımız bir şey.\n\n<strong>Cuma, 29'u</strong> takviminize işaretleyin. Kaynaklarım operasyonumuzun bir sonraki aşamasına bizi götürecek bir ipucu ortaya çıkardı. Bu sadece bir parça, ancak geniş çaplı planımız için hayati önem taşıyor.\n\nUnutmayın, gizlilik bizim temelimiz. Tetikte ve hazır olun. Uyanıklığınıza güveniyorum.\n\nSterling dışarıda.\n\nİletişimin Sonu.",
-        'de': "<strong>Vertrauliche Übermittlung an alle Operative</strong>\n\nAchtung <strong><em>Operative</em></strong>,\n\nHier ist <strong>Sterling</strong>. Es entfaltet sich eine Situation, die eure scharfe Beobachtung erfordert. Es ist ein entscheidender Moment, der eure Einsicht und Bereitschaft verlangt. Jemand Neues tritt ins Rampenlicht, dessen Fachwissen in ███████ und █████ ███████████ ist wie nichts, was wir bisher gesehen haben.\n\nMarkiert <strong>Freitag, den 29.</strong> in euren Kalendern. Meine Quellen haben einen Hinweis aufgedeckt, der uns in die nächste Phase unserer Operation führen wird. Dies ist nur ein Bruchstück, aber von entscheidender Bedeutung für unsere umfassendere Agenda.\n\nDenkt daran, Diskretion ist unser Rückgrat. Bleibt scharf und bereit. Ich zähle auf eure Wachsamkeit.\n\nSterling raus.\n\nEnde der Übertragung.",
-        'fr': "<strong>Transmission confidentielle à tous les Opérateurs</strong>\n\nAttention <strong><em>Opérateurs</em></strong>,\n\nIci <strong>Sterling</strong>. Une situation se déroule qui demande votre observation aiguë. C'est un moment crucial qui nécessite votre perspicacité et votre préparation. Quelqu'un de nouveau est sur le point de faire son apparition, son expertise en ███████ et █████ ███████████ est sans précédent.\n\nJe vais essayer de partager plus d'informations le <strong>vendredi 29</strong>. Mes sources ont déterré un indice qui nous mènera à la prochaine phase de notre opération. Ce n'est qu'un fragment, mais il est vital pour notre plan plus large.\n\nRappelez-vous, la discrétion est notre pilier. Restez affûtés et prêts. Je compte sur votre vigilance.\n\nSterling terminé.\n\nFin de la Transmission."
+        'es': "<strong>Mensaje confidencial para todos los operativos Echo</strong>\n\nOperativos,\n\nAquí Sterling. He logrado interceptar información intrigante de Life Inc. a través de nuestros canales de comunicación seguros. Parece que estaban planeando algo, y eso pronto se nos revelará.\n\nTambién recibí tres imágenes de CCTV, pero todas estaban corruptas. Sin embargo, logré recrearlas usando JidMourney. Echad un vistazo. ¿Qué es esa misteriosa franja negra? ¿Y por qué esta gente tiene tanto miedo de algo? El significado de esto aún se desconoce, pero os aseguro que estoy trabajando para descubrir más.\n\nAdemás, me conecté a una frecuencia de radio y capté dos frases: \"My .--. .- - .. . -. -.-. . is .-- .- -. .. -. --. ,\" y \"Is this . -. - . .-. - .- .. -. .. -. --. ?\" Os aconsejo que descifréis estos mensajes y comprendáis su significado más profundo, si lo hay.\n\nEspero volver el 30 de diciembre con nueva información. Debemos estar preparados para lo que se pueda revelar.\n\nSterling. Fin de la comunicación.",
+        'ru': "<strong>Конфиденциальное сообщение всем эхо-оперативникам</strong>\n\nОперативники,\n\nЭто Стерлинг. Мне удалось перехватить интересную информацию от Life Inc. через наши защищенные каналы связи. Похоже, они что-то планировали, и скоро это что-то станет известно нам.\n\nЯ также получил три изображения с камер видеонаблюдения, но все они были повреждены. Тем не менее, мне удалось воссоздать их с помощью JidMourney. Посмотрите на них. Что это за загадочная черная полоса? И почему эти люди так боятся чего-то? Значение этого пока неизвестно, но можете быть уверены, я работаю над тем, чтобы узнать больше.\n\nКроме того, мне удалось подключиться к радиочастоте и услышать две фразы: \"My .--. .- - .. . -. -.-. . is .-- .- -. .. -. --. ,\" и \"Is this . -. - . .-. - .- .. -. .. -. --. ?\" Я советую вам расшифровать эти сообщения и понять их более глубокий смысл, если он есть.\n\nНадеюсь, 30 декабря я смогу вернуться с новой информацией. Мы должны быть готовы к тому, что может быть раскрыто.\n\nСтерлинг. Конец связи.",
+        'tr': "<strong>Tüm Echo Operatiflerine Gizli Mesaj</strong>\n\nOperatifler,\n\nBurada Sterling. Güvenli iletişim kanallarımız aracılığıyla Life Inc.'ten ilgi çekici bazı bilgiler ele geçirdim. Anlaşılan bir şeyler planlıyorlar ve bu, yakında bizlere açıklanacak.\n\nAyrıca CCTV'den üç görüntü aldım, ancak hepsi bozulmuştu. Yine de, JidMourney kullanarak onları yeniden oluşturmayı başardım. Bir göz atın. Bu gizemli siyah şerit ne? Ve bu insanlar neyden bu kadar korkuyorlar? Bunun anlamı henüz bilinmiyor, ancak daha fazlasını ortaya çıkarmak için çalıştığımdan emin olabilirsiniz.\n\nBunun yanı sıra, bir radyo frekansına bağlanarak iki ifade yakaladım: \"My .--. .- - .. . -. -.-. . is .-- .- -. .. -. --. ,\" ve \"Is this . -. - . .-. - .- .. -. .. -. --. ?\" Bu mesajları çözmenizi ve varsa daha derin anlamlarını anlamanızı tavsiye ederim.\n\nUmarım 30 Aralık'ta yeni bilgilerle geri döneceğim. Açığa çıkabilecek şeylere karşı hazırlıklı olmalıyız.\n\nSterling. İletişim sona erdi.",
+        'de': "<strong>Vertrauliche Nachricht an alle Echo-Operative</strong>\n\nOperative,\n\nHier spricht Sterling. Ich habe einige faszinierende Informationen von Life Inc. über unsere sicheren Kommunikationskanäle abgefangen. Es scheint, dass sie etwas planen, und dieses Etwas wird uns bald offenbart.\n\nIch habe auch drei Bilder von der Überwachungskamera erhalten, aber sie waren alle beschädigt. Dennoch ist es mir gelungen, sie mit JidMourney zu rekonstruieren. Schauen Sie sie sich an. Was ist dieser mysteriöse schwarze Streifen? Und warum fürchten sich diese Menschen so sehr vor etwas? Die Bedeutung davon ist noch unbekannt, aber seien Sie versichert, ich arbeite daran, mehr herauszufinden.\n\nAußerdem habe ich eine Radiofrequenz abgehört und zwei Phrasen aufgefangen: 'My .--. .- - .. . -. -.-. . is .-- .- -. .. -. --. ,' und 'Is this . -. - . .-. - .- .. -. .. -. --.?' Ich rate Ihnen, diese Nachrichten zu entschlüsseln und ihre tiefere Bedeutung zu verstehen, falls sie eine haben.\n\nIch hoffe, am 30. Dezember mit neuen Informationen zurückzukehren. Wir müssen auf das vorbereitet sein, was enthüllt werden könnte.\n\nSterling. Ende der Übertragung.",
+        'fr': "<strong>Message confidentiel pour tous les opérateurs Echo</strong>\n\nOpérateurs,\n\nC'est Sterling. J'ai réussi à intercepter des informations intrigantes de Life Inc. via nos canaux de communication sécurisés. Il semble qu'ils planifiaient quelque chose, et ce quelque chose sera bientôt révélé.\n\nJ'ai également reçu trois images de CCTV, mais elles étaient toutes corrompues. Néanmoins, j'ai réussi à les recréer en utilisant JidMourney. Regardez-les. Qu'est-ce que cette mystérieuse bande noire ? Et pourquoi ces personnes ont-elles si peur de quelque chose ? La signification de cela est encore inconnue, mais soyez assurés que je travaille pour en découvrir davantage.\n\nDe plus, j'ai capté une fréquence radio et attrapé deux phrases : 'My .--. .- - .. . -. -.-. . is .-- .- -. .. -. --. ,' et 'Is this . -. - . .-. - .- .. -. .. -. --.?' Je vous conseille de décoder ces messages et de comprendre leur sens plus profond, s'ils en ont un.\n\nJ'espère revenir le 30 décembre avec de nouvelles informations. Nous devons être prêts pour ce qui pourrait être révélé.\n\nSterling. Fin de la communication."
     };
 
     var hasVisited = localStorage.getItem('hasVisited-' + pageLanguage);
     var messageContainer = document.getElementById('message-container');
     var message = messages[pageLanguage] || messages['en']; 
 
-    if (!hasVisited) {
-        var i = 0;
+if (!hasVisited) {
+    var i = 0;
 
-        function typeWriter() {
-            if (i < message.length) {
-                messageContainer.innerHTML += message.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50); 
-            }
+    function typeWriter() {
+        if (i < message.length) {
+            messageContainer.innerHTML += message.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50); 
         }
-
-        typeWriter();
-        localStorage.setItem('hasVisited-' + pageLanguage, 'true');
-    } else {
-        messageContainer.innerText = message;
     }
+
+    typeWriter();
+    localStorage.setItem('hasVisited-' + pageLanguage, 'true');
+} else {
+    messageContainer.innerHTML = message;
+}
+
 });
