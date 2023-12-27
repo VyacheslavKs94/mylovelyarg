@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
             'Are <strong>the</strong> secrets safe?',
             'What\'s <strong>hidden</strong> beneath the surface?',
             'Do <strong>truths</strong> ever emerge?'
+            `The <strong>sky</strong> is truly beautiful especially in <strong>winter</strong>`
+
         ];
 
         const mosaicBackground = document.querySelector('.mosaic-background');
