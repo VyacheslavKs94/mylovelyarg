@@ -2,29 +2,6 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: 'Noto Sans JP', Arial, sans-serif;
-    position: relative;
-    animation: backgroundAnimation 10s infinite alternate;
-    z-index: -1; /* Ensure background is behind all content except video */
-}
-
-#video-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2; /* Lowest layer */
-    overflow: hidden;
-}
-
-#myVideo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Cover the full area of the container */
-    -o-filter: blur(15px);
-    filter: blur(15px);
-    object-fit: cover;
-    transform: scale(1.04);
 }
 
 .content-container {
@@ -32,8 +9,6 @@ body, html {
     justify-content: center;
     align-items: center;
     height: 100%;
-    position: relative; /* Ensure it is above the video */
-    z-index: 1; /* Increase z-index */
 }
 
 .poem-container {
@@ -41,15 +16,14 @@ body, html {
     color: white;
     margin: 0 20px;
     font-size: 1.5em; /* Adjust this value to change the text size */
-    position: relative; /* Ensure it is above the video */
-    z-index: 1; /* Increase z-index */
 }
+
 
 .vertical-line {
     border-left: 1px solid white;
     height: 4%; /* Adjust this value as needed */
-    position: relative; /* Ensure it is above the video */
 }
+
 
 hr {
     border: none;
@@ -62,8 +36,10 @@ hr {
     color: white;
     text-align: center;
     margin-top: 20px;
-    position: absolute; /* Ensure it is above the video */
-    z-index: 2; /* Increased z-index */
+}
+
+body {
+    animation: backgroundAnimation 10s infinite alternate;
 }
 
 #signature-image {
@@ -73,7 +49,6 @@ hr {
     right: 10px; /* 10px from the right */
     max-width: 100px; /* Max width for larger screens */
     max-height: 100px; /* Max height for larger screens */
-    z-index: 2; /* Increased z-index */
 }
 
 @keyframes backgroundAnimation {
