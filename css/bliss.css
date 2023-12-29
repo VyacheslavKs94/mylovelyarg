@@ -19,10 +19,6 @@ body, html {
     z-index: -1;
 }
 
-.cyrillic-text {
-    font-family: 'Yanone Kaffeesatz', Arial, sans-serif;
-}
-
 #message-container {
     display: flex;
     flex-direction: column; 
