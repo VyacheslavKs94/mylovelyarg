@@ -76,7 +76,7 @@ body, html {
 .gallery-img {
     width: 95%; 
     max-width: 350px; 
-    font-size: 24px; 
+    font-size: 30px; 
     transition: transform 0.3s ease;
     cursor: pointer;
     margin-bottom: 15px; 
