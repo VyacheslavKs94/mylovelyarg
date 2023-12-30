@@ -84,9 +84,14 @@ body, html {
     text-decoration: none;
 }
 
+.gallery-img:visited {
+    color: white;
+}
 
 .gallery-img:hover {
-    transform: scale(1.05);
+        color: white; 
+        text-decoration: none; 
+        transform: scale(1.05);
 }
 
 .welcome-message, .message {
