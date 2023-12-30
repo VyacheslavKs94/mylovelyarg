@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap');
 
 body, html {
     height: 100%;
     margin: 0;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
     background-color: #111;
     color: #fff;
     text-align: center;
@@ -11,7 +11,7 @@ body, html {
 
 .container {
     position: relative;
-    z-index: 2; /* Higher z-index than mosaic background */
+    z-index: 2; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,29 +26,41 @@ body, html {
     height: 100%;
     z-index: 0;
     opacity: 0.4;
-    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    pointer-events: none; /* Allows clicks to pass through */
+    pointer-events: none; 
+}
+
+.background-image {
+    position: fixed;
+    top: 50%; 
+    left: 50%;
+    width: 265px; 
+    height: 200px;
+    background: url('../img/lifeinc.png') no-repeat center center;
+    background-size: cover;
+    transform: translate(-50%, -50%);
+    filter: blur(5px);
+    z-index: 1;
 }
 
 .text-item {
     position: absolute;
     color: white;
-    font-size: 20px;
+    font-size: 30px;
     user-select: none;
     pointer-events: none;
-    font-family: 'Rubik', sans-serif; /* Ensuring consistent font */
-    line-height: 1.4; /* Adjusting line height for readability */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
-    white-space: nowrap; /* Keep text in a single line */
-    max-width: 80vw; /* Maximum width relative to viewport width */
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    line-height: 1.4; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    max-width: 80vw; 
 }
 
 @media (max-width: 768px) {
     .text-item {
-        font-size: 14px; 
+        font-size: 20px; 
         line-height: 1.6; 
     }
 }
@@ -62,15 +74,17 @@ body, html {
 }
 
 .gallery-img {
-    width: 90%; /* Adjust based on preference */
-    max-width: 300px; /* Prevents images from being too large */
+    width: 95%; 
+    max-width: 350px; 
+    font-size: 24px; 
     transition: transform 0.3s ease;
     cursor: pointer;
-    margin-bottom: 10px; /* Space between images */
+    margin-bottom: 15px; 
 }
 
+
 .gallery-img:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    transform: scale(1.05);
 }
 
 .welcome-message, .message {
@@ -80,7 +94,7 @@ body, html {
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     border: 2px solid #444;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
 button {
@@ -95,9 +109,9 @@ button {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
-    width: 150px; /* Fixed width */
-    overflow: hidden; /* Prevents text overflow */
-    white-space: nowrap; /* Keeps text in a single line */
+    width: 150px;
+    overflow: hidden; 
+    white-space: nowrap; 
 }
 
 button:hover {
@@ -105,8 +119,7 @@ button:hover {
 }
 
 #message-container {
-    white-space: pre-line; /* To preserve line breaks and spacing in the message */
-    /* Add any other styling as needed */
+    white-space: pre-line;
 }
 
 .random-link {
@@ -116,7 +129,6 @@ button:hover {
     font-size: 14px; 
     z-index: 10; 
 
-    /* Random positioning */
     top: calc(10% + (90% * var(--random-top)));
     left: calc(10% + (90% * var(--random-left)));
 }
