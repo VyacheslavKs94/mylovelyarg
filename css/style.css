@@ -80,6 +80,8 @@ body, html {
     transition: transform 0.3s ease;
     cursor: pointer;
     margin-bottom: 15px; 
+    color: white; 
+    text-decoration: none;
 }
 
 
