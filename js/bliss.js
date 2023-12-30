@@ -69,5 +69,5 @@ function randomChar() {
     return characters.charAt(Math.floor(Math.random() * characters.length));
 }
 
-setInterval(updateMessage, 4000 + transitionTime); 
-window.onload = updateMessage;
+//setInterval(updateMessage, 4000 + transitionTime); 
+//window.onload = updateMessage;
