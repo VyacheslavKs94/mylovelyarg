@@ -126,7 +126,9 @@ button:hover {
 }
 
 #message-container {
+    font-size: 34px; /* Increase the font size as needed */
     white-space: pre-line;
+    /* Other styling properties */
 }
 
 .random-link {
@@ -139,3 +141,34 @@ button:hover {
     top: calc(10% + (90% * var(--random-top)));
     left: calc(10% + (90% * var(--random-left)));
 }
+
+@keyframes glitchAnimation {
+    0%, 100% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+    10%, 90% {
+      transform: translate3d(-2px, 0, 0);
+      opacity: 0.8;
+    }
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+      opacity: 0.6;
+    }
+    30%, 70% {
+      transform: translate3d(-2px, -2px, 0);
+      opacity: 0.4;
+    }
+    40%, 60% {
+      transform: translate3d(2px, 2px, 0);
+      opacity: 0.2;
+    }
+    50% {
+      transform: translate3d(2px, -2px, 0);
+      opacity: 0;
+    }
+  }
+  
+  .glitch {
+    animation: glitchAnimation 0.5s infinite alternate;
+  }

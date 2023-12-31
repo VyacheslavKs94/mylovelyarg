@@ -1,0 +1,120 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Rubik', sans-serif;
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+}
+
+.container {
+    position: relative;
+    z-index: 2; /* Higher z-index than mosaic background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.mosaic-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.4;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    pointer-events: none; /* Allows clicks to pass through */
+}
+
+.text-item {
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    user-select: none;
+    pointer-events: none;
+    font-family: 'Rubik', sans-serif; /* Ensuring consistent font */
+    line-height: 1.4; /* Adjusting line height for readability */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+    white-space: nowrap; /* Keep text in a single line */
+    max-width: 80vw; /* Maximum width relative to viewport width */
+}
+
+@media (max-width: 768px) {
+    .text-item {
+        font-size: 14px; 
+        line-height: 1.6; 
+    }
+}
+
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px; 
+}
+
+.gallery-img {
+    width: 90%; /* Adjust based on preference */
+    max-width: 300px; /* Prevents images from being too large */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 10px; /* Space between images */
+}
+
+.gallery-img:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.welcome-message, .message {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    border: 2px solid #444;
+    font-family: 'Rubik', sans-serif;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 150px; /* Fixed width */
+    overflow: hidden; /* Prevents text overflow */
+    white-space: nowrap; /* Keeps text in a single line */
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#message-container {
+    white-space: pre-line; /* To preserve line breaks and spacing in the message */
+    /* Add any other styling as needed */
+}
+
+.random-link {
+    position: absolute;
+    color: #fff; 
+    text-decoration: none;
+    font-size: 14px; 
+    z-index: 10; 
+
+    /* Random positioning */
+    top: calc(10% + (90% * var(--random-top)));
+    left: calc(10% + (90% * var(--random-left)));
+}
