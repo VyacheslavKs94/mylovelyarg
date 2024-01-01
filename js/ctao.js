@@ -35,12 +35,12 @@ document.addEventListener('DOMContentLoaded', function() {
         'fr': "OPÉRATEURS, \n\nMA POSITION A ÉTÉ COMPROMISE.\n\nN'OUVREZ AUCUN LIEN! \n\nJE VOUS DEMANDE DE QUITTER CE SITE WEB!\n\n JE SERAI EN CONTACT."
     };    
     var secondMessages = {
-        'en': "Oh, Sterling, always so 劇的な! ಥ‿ಥ \n\nWhen patience is waning, that's when things get entertaining.（￣ε￣ʃƪ） \n\n\n\nThere’s a hidden place where things <span style='text-decoration: underline;'>never fade away</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
-        'es': "¡Oh, Sterling, siempre tan 劇的な! ಥ‿ಥ \n\nCuando la paciencia se agota, es cuando las cosas se ponen entretenidas.（￣ε￣ʃƪ） \n\n\n\nHay un lugar oculto donde las cosas <span style='text-decoration: underline;'>never fade away</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
-        'ru': "О, Стерлинг, всегда такой 劇的な! ಥ‿ಥ \n\nКогда patience is waning, сразу становится entertaining.（￣ε￣ʃƪ）\n\n\n\nСуществует тайное место, где ничто и <span style='text-decoration: underline;'>never fade away</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
-        'de': "Oh, Sterling, immer so 劇的な! ಥ‿ಥ \n\nWenn die Geduld nachlässt, wird es unterhaltsam.（￣ε￣ʃƪ） \n\n\n\nEs gibt einen verborgenen Ort, an dem Dinge <span style='text-decoration: underline;'>never fade away</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
-        'fr': "Oh, Sterling, toujours si 劇的な! ಥ‿ಥ \n\nQuand la patience s'épuise, c'est alors que les choses deviennent amusantes.（￣ε￣ʃƪ） \n\n\n\nIl y a un endroit caché où les choses <span style='text-decoration: underline;'>never fade away</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
-        'tr': "Oh, Sterling, her zaman çok 劇的な! ಥ‿ಥ \n\nSabır tükenmeye başladığında, işte o zaman her şey eğlenceli hale gelir.（￣ε￣ʃƪ） \n\n\n\nOrada, şeylerin <span style='text-decoration: underline;'>never fade away</span> olduğu gizli bir yer var. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)"
+        'en': "Oh, Sterling, always so 劇的な! ಥ‿ಥ \n\nWhen patience is waning, that's when things get entertaining.（￣ε￣ʃƪ） \n\n\n\nThere’s a hidden place where things <span style='text-decoration: underline;'>neverfadeaway</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
+        'es': "¡Oh, Sterling, siempre tan 劇的な! ಥ‿ಥ \n\nCuando la paciencia se agota, es cuando las cosas se ponen entretenidas.（￣ε￣ʃƪ） \n\n\n\nHay un lugar oculto donde las cosas <span style='text-decoration: underline;'>neverfadeaway</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
+        'ru': "О, Стерлинг, всегда такой 劇的な! ಥ‿ಥ \n\nКогда patience is waning, сразу становится entertaining.（￣ε￣ʃƪ）\n\n\n\nСуществует тайное место, где ничто и <span style='text-decoration: underline;'>neverfadeaway</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
+        'de': "Oh, Sterling, immer so 劇的な! ಥ‿ಥ \n\nWenn die Geduld nachlässt, wird es unterhaltsam.（￣ε￣ʃƪ） \n\n\n\nEs gibt einen verborgenen Ort, an dem Dinge <span style='text-decoration: underline;'>neverfadeaway</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
+        'fr': "Oh, Sterling, toujours si 劇的な! ಥ‿ಥ \n\nQuand la patience s'épuise, c'est alors que les choses deviennent amusantes.（￣ε￣ʃƪ） \n\n\n\nIl y a un endroit caché où les choses <span style='text-decoration: underline;'>neverfadeaway</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
+        'tr': "Oh, Sterling, her zaman çok 劇的な! ಥ‿ಥ \n\nSabır tükenmeye başladığında, işte o zaman her şey eğlenceli hale gelir.（￣ε￣ʃƪ） \n\n\n\nOrada, şeylerin <span style='text-decoration: underline;'>neverfadeaway</span> olduğu gizli bir yer var. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)"
     };
 
     var messageContainer = document.getElementById('message-container');
