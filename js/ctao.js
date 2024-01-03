@@ -84,9 +84,8 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 messageContainer.classList.remove('glitch');
                 messageContainer.innerHTML = '';
-                messageContainer.style.fontSize = '250%'; // You might want to adjust or remove this if it conflicts with the SVG size
+                messageContainer.style.fontSize = '250%'; 
                 var newMessage = secondMessages[pageLanguage] || secondMessages['en']; 
-                // Replace the placeholder with the SVG string and set a specific width
                 newMessage = newMessage.replace('[neverfadeaway]', `<svg height="70px" width="200px" viewBox="0 0 170 40" preserveAspectRatio="xMidYMid meet"> <!-- Adjust viewBox as needed -->
                 <defs>
                     <linearGradient id="text-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
