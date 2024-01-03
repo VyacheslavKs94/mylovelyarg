@@ -35,12 +35,12 @@ document.addEventListener('DOMContentLoaded', function() {
         'fr': "OPÉRATEURS, \n\nMA POSITION A ÉTÉ COMPROMISE.\n\nN'OUVREZ AUCUN LIEN! \n\nJE VOUS DEMANDE DE QUITTER CE SITE WEB!\n\n JE SERAI EN CONTACT."
     };    
     var secondMessages = {
-        'en': "Oh, Sterling, always so 劇的な! ಥ‿ಥ \n\nWhen patience is waning, that's when things get entertaining.（￣ε￣ʃƪ） \n\n\n\nThere’s a hidden place where things <span style='text-decoration: underline;'>neverfadeaway</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
-        'es': "¡Oh, Sterling, siempre tan 劇的な! ಥ‿ಥ \n\nCuando la paciencia se agota, es cuando las cosas se ponen entretenidas.（￣ε￣ʃƪ） \n\n\n\nHay un lugar oculto donde las cosas <span style='text-decoration: underline;'>neverfadeaway</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
-        'ru': "О, Стерлинг, всегда такой 劇的な! ಥ‿ಥ \n\nКогда patience is waning, сразу становится entertaining.（￣ε￣ʃƪ）\n\n\n\nСуществует тайное место, где ничто и <span style='text-decoration: underline;'>neverfadeaway</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
-        'de': "Oh, Sterling, immer so 劇的な! ಥ‿ಥ \n\nWenn die Geduld nachlässt, wird es unterhaltsam.（￣ε￣ʃƪ） \n\n\n\nEs gibt einen verborgenen Ort, an dem Dinge <span style='text-decoration: underline;'>neverfadeaway</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
-        'fr': "Oh, Sterling, toujours si 劇的な! ಥ‿ಥ \n\nQuand la patience s'épuise, c'est alors que les choses deviennent amusantes.（￣ε￣ʃƪ） \n\n\n\nIl y a un endroit caché où les choses <span style='text-decoration: underline;'>neverfadeaway</span>. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)",
-        'tr': "Oh, Sterling, her zaman çok 劇的な! ಥ‿ಥ \n\nSabır tükenmeye başladığında, işte o zaman her şey eğlenceli hale gelir.（￣ε￣ʃƪ） \n\n\n\nOrada, şeylerin <span style='text-decoration: underline;'>neverfadeaway</span> olduğu gizli bir yer var. Encuéntralo. \n\n\(｡-_-｡ )人( ｡-_-｡)"
+        'en': "Oh, Sterling, always so 劇的な! ಥ‿ಥ \n\nWhen patience is waning, that's when things get entertaining.（￣ε￣ʃƪ） \n\n\n\nThere’s a hidden place where things <a href='https://mrsterling.quest/neverfadeaway.html' class='gradient-link'>[neverfadeaway]</a>... \n\n\(｡-_-｡ )人( ｡-_-｡)",
+        'es': "¡Oh, Sterling, siempre tan 劇的な! ಥ‿ಥ \n\nCuando la paciencia se agota, es cuando las cosas se ponen entretenidas.（￣ε￣ʃƪ） \n\n\n\nHay un lugar oculto donde las cosas <a href='https://mrsterling.quest/neverfadeaway.html' class='gradient-link'>[neverfadeaway]</a>... \n\n\(｡-_-｡ )人( ｡-_-｡)",
+        'ru': "О, Стерлинг, всегда такой 劇的な! ಥ‿ಥ \n\nКогда patience is waning, сразу становится entertaining.（￣ε￣ʃƪ）\n\n\n\nСуществует тайное место, где ничто и <a href='https://mrsterling.quest/neverfadeaway.html' class='gradient-link'>[neverfadeaway]</a>... \n\n\(｡-_-｡ )人( ｡-_-｡)",
+        'de': "Oh, Sterling, immer so 劇的な! ಥ‿ಥ \n\nWenn die Geduld nachlässt, wird es unterhaltsam.（￣ε￣ʃƪ） \n\n\n\nEs gibt einen verborgenen Ort, an dem Dinge <a href='https://mrsterling.quest/neverfadeaway.html' class='gradient-link'>[neverfadeaway]</a>... \n\n\(｡-_-｡ )人( ｡-_-｡)",
+        'fr': "Oh, Sterling, toujours si 劇的な! ಥ‿ಥ \n\nQuand la patience s'épuise, c'est alors que les choses deviennent amusantes.（￣ε￣ʃƪ） \n\n\n\nIl y a un endroit caché où les choses <a href='https://mrsterling.quest/neverfadeaway.html' class='gradient-link'>[neverfadeaway]</a>... \n\n\(｡-_-｡ )人( ｡-_-｡)",
+        'tr': "Oh, Sterling, her zaman çok 劇的な! ಥ‿ಥ \n\nSabır tükenmeye başladığında, işte o zaman her şey eğlenceli hale gelir.（￣ε￣ʃƪ） \n\n\n\nOrada, şeylerin <a href='https://mrsterling.quest/neverfadeaway.html' class='gradient-link'>[neverfadeaway]</a> olduğu gizli bir yer var... \n\n\(｡-_-｡ )人( ｡-_-｡)"
     };
 
     var messageContainer = document.getElementById('message-container');
@@ -84,8 +84,18 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 messageContainer.classList.remove('glitch');
                 messageContainer.innerHTML = '';
-                messageContainer.style.fontSize = '250%';
+                messageContainer.style.fontSize = '250%'; // You might want to adjust or remove this if it conflicts with the SVG size
                 var newMessage = secondMessages[pageLanguage] || secondMessages['en']; 
+                // Replace the placeholder with the SVG string and set a specific width
+                newMessage = newMessage.replace('[neverfadeaway]', `<svg height="70px" width="200px" viewBox="0 0 170 40" preserveAspectRatio="xMidYMid meet"> <!-- Adjust viewBox as needed -->
+                <defs>
+                    <linearGradient id="text-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:violet;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:lightcoral;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <text fill="url(#text-gradient)" x="0" y="34" font-family="'Yanone Kaffeesatz', sans-serif" font-size="22">neverfadeaway</text> <!-- Adjust font-size as needed -->
+            </svg>`);
                 messageContainer.innerHTML = newMessage;
             }, 1000); 
         }, 5000); 
