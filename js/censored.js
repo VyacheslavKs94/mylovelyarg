@@ -14,17 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
         setTimeout(function() {
             document.body.removeChild(tempMessage);
-        }, 200); // Greeting appears for 0.2 seconds
+        }, 200); 
 
         index = (index + 1) % greetings.length;
     };
 
-    // Start showing greetings 5 seconds after page loads
     setTimeout(function() {
-        greetingInterval = setInterval(showGreeting, 200); // Change greeting every 0.2 seconds
+        greetingInterval = setInterval(showGreeting, 200); 
     }, 5000);
 
-    // Stop showing greetings and show the first message after 12 seconds
     setTimeout(function() {
         clearInterval(greetingInterval);
         document.getElementById('message').innerHTML = "Hey! <br> Look at this grim, gray, and corporate Life Inc. website. <br> Pretty #$*!, right?";

@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // For index.html: Button text changes and redirection to cctv.html
     const enterTranslations = ['Enter', 'Entrar', 'Войти', 'Gir', 'Betreten', 'Entrer'];
     let currentIndex = 0;
     const button = document.getElementById('reveal-button');
@@ -15,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // For cctv.html: Click event on image-gallery for language-specific redirection
     if (window.location.pathname.includes('cctv.html')) {
         const imageGalleryButton = document.querySelector('.image-gallery a');
 
@@ -24,9 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Common function for language-specific redirection
     function redirectToLanguageSpecificPage(e) {
-        if (e) e.preventDefault(); // Prevent default if event exists
+        if (e) e.preventDefault(); 
         var userLang = navigator.language || navigator.userLanguage; 
         userLang = userLang.split('-')[0];
 
@@ -41,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Typewriter effect and message handling
     var pageLanguage = document.documentElement.lang;
     var messages = {
         'en': "OPERATIVES, \n\nMY LOCATION HAS BEEN COMPROMISED AND MY WEBSITE IS HACKED.\n\nDO NOT OPEN ANY LINKS! \n\nI DEMAND YOU TO LEAVE THIS WEBSITE!\n\nI WILL BE IN TOUCH.",
@@ -104,10 +100,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 messageContainer.style.fontSize = '250%'; 
                 var newMessage = secondMessages[pageLanguage] || secondMessages['en']; 
     
-                // Array of phrases to be replaced with the SVG
                 var phrasesToReplace = ['[never fade away]'];
     
-                // Replace each phrase with the SVG
                 phrasesToReplace.forEach(function(phrase) {
                     newMessage = newMessage.replace(phrase, `<svg height="80px" width="240px" viewBox="0 0 180 40" preserveAspectRatio="xMidYMid meet">
                         <defs>

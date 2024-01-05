@@ -68,6 +68,3 @@ function randomChar() {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     return characters.charAt(Math.floor(Math.random() * characters.length));
 }
-
-//setInterval(updateMessage, 4000 + transitionTime); 
-//window.onload = updateMessage;

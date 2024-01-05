@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function adjustBackground() {
-    var imageSize = { w: 1920, h: 1080 }; // Adjust to your image size
-    var subjectRegion = { x: 0, y: 0, w: 1920, h: 1080 }; // Adjust to focus area
+    var imageSize = { w: 1920, h: 1080 }; 
+    var subjectRegion = { x: 0, y: 0, w: 1920, h: 1080 }; 
 
     var viewportSize = {
         w: window.innerWidth,
