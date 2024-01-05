@@ -21,7 +21,7 @@ body, html {
 #message-container {
     display: flex;
     flex-direction: column; 
-    justify-content: flex-start; /* Aligns content towards the start (top) */
+    justify-content: flex-start; 
     align-items: center;
     height: 100%;
     text-align: center;
@@ -30,7 +30,7 @@ body, html {
     padding: 20px;
     border-radius: 10px;
     font-size: 40px; 
-    padding-top: 25%; /* Add some padding to move it down slightly from the very top */
+    padding-top: 25%; 
 }
 
 

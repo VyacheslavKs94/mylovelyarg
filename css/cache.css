@@ -1,0 +1,15 @@
+#passwordPrompt p {
+    font-size: 24px; 
+    margin-bottom: 15px; 
+}
+
+#passwordInput, #passwordPrompt button {
+    font-size: 18px; 
+    padding: 10px 20px; 
+    margin-top: 5px; 
+}
+
+#passwordPrompt button {
+    width: auto; 
+    cursor: pointer; 
+}

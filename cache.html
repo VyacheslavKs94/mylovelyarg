@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cache: CCTV Images</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cache.css">
+</head>
+<body>
+    <div id="passwordPrompt" class="password-prompt">
+        <p>LIFE INC. SECURITY. ENTER PASSWORD.</p>
+        <input type="password" id="passwordInput">
+        <button onclick="checkPassword()">Enter</button>
+    </div>
+    
+    <div id="hiddenContent" style="display: none;">
+    <div class="mosaic-background"></div> <!-- Added this div -->
+    <div class="container">
+        <div class="image-gallery">
+            <img src="img/outside.png" alt="Outside" class="gallery-img" id="outside">
+            <img src="img/backyard.png" alt="Backyard" class="gallery-img" id="backyard">
+            <img src="img/house.png" alt="House" class="gallery-img" id="house">
+            <img src="img/underground.png" alt="Underground" class="gallery-img" id="underground">
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+    <script src="js/cache.js"></script>
+</body>
+</html>

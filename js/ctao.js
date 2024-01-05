@@ -40,9 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var pageLanguage = document.documentElement.lang;
     var messages = {
-        'en': "OPERATIVES, \n\nMY LOCATION HAS BEEN COMPROMISED AND MY WEBSITE IS HACKED.\n\nDO NOT OPEN ANY LINKS! \n\nI DEMAND YOU TO LEAVE THIS WEBSITE!\n\nI WILL BE IN TOUCH.",
+        'en': "OPERATIVES, \n\nMY LOCATION HAS BEEN COMPROMISED, MY WEBSITE IS HACKED, MY DISAPPOINTMENT IS IMMEASURABLE, AND MY DAY IS RUINED.\n\nDO NOT OPEN ANY LINKS! \n\nI DEMAND YOU TO LEAVE THIS WEBSITE!\n\nI WILL BE IN TOUCH.",
         'es': "OPERATIVOS, \n\nMI UBICACIÓN HA SIDO COMPROMETIDA Y MI SITIO WEB HA SIDO HACKEADO.\n\n¡NO ABRAN NINGÚN ENLACE! \n\n¡EXIJO QUE ABANDONEN ESTE SITIO WEB!\n\nESTARÉ EN CONTACTO.",
-        'ru': "ОПЕРАТИВНИКИ, \n\nМОЁ МЕСТОПОЛОЖЕНИЕ РАСКРЫТО И МОЙ САЙТ ВЗЛОМАН.\n\nНЕ ОТКРЫВАЙТЕ НИКАКИХ ССЫЛОК! \n\nТРЕБУЮ СЕЙЧАС ЖЕ ПОКИНУТЬ ЭТОТ САЙТ!\n\nБУДУ НА СВЯЗИ.",
+        'ru': "ОПЕРАТИВНИКИ, \n\nМОЁ МЕСТОПОЛОЖЕНИЕ РАСКРЫТО, МОЙ САЙТ ВЗЛОМАН.\n\nНЕ ОТКРЫВАЙТЕ НИКАКИХ ССЫЛОК! \n\nТРЕБУЮ СЕЙЧАС ЖЕ ПОКИНУТЬ ЭТОТ САЙТ!\n\nБУДУ НА СВЯЗИ.",
         'tr': "OPERATİFLER, \n\nKONUMUM ELE VERİLDİ VE WEB SİTEM HACKLENDİ.\n\nHİÇBİR LİNKİ AÇMAYIN! \n\nBU WEB SİTESİNDEN AYRILMANIZI TALEP EDİYORUM!\n\nİLETİŞİMDE OLACAĞIM.",
         'de': "OPERATIVE, \n\nMEIN STANDORT WURDE KOMPROMITTIERT UND MEINE WEBSEITE IST GEHACKT.\n\nÖFFNEN SIE KEINE LINKS! \n\nICH FORDERE SIE AUF, DIESE WEBSEITE ZU VERLASSEN!\n\nICH WERDE IN KONTAKT BLEIBEN.",
         'fr': "OPÉRATEURS, \n\nMA POSITION A ÉTÉ COMPROMISE ET MON SITE WEB A ÉTÉ PIRATÉ.\n\nN'OUVREZ AUCUN LIEN! \n\nJE VOUS DEMANDE DE QUITTER CE SITE WEB!\n\nJE SERAI EN CONTACT."
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <stop offset="100%" style="stop-color:lightcoral;stop-opacity:1" />
                             </linearGradient>
                         </defs>
-                        <text fill="url(#text-gradient)" x="0" y="34" font-family="'Yanone Kaffeesatz', sans-serif" font-size="22">${phrase.slice(1, -1)}</text> <!-- Adjust font-size as needed -->
+                        <text fill="url(#text-gradient)" x="0" y="34" font-family="'Yanone Kaffeesatz', sans-serif" font-size="22">${phrase.slice(1, -1)}</text>
                     </svg>`);
                 });
     
