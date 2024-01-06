@@ -14,5 +14,5 @@ function checkPassword() {
     }
 }
 
-// Gordon, before you'll take the train to work, change the darn security measure and cypher it!!
-// Do not just leave password as A PASSWORD TO THE LIFEINC CACHED PAGE or you-know-who will come again!!
+// Gordon, before you take the train to work, change the darn security measure and cipher it!!
+// Do not just leave the password as A PASSWORD TO THE LIFE INC CACHED PAGE, or you-know-who will come again!!
