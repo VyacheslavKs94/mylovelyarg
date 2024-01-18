@@ -13,7 +13,27 @@ body, html {
     height: 100%;
     background: url('../img/wedontcare.jpg') no-repeat center center; 
     background-size: cover;
+    background-position: center 10%; 
 }
+
+#cover-link {
+    text-decoration: none; 
+    color: inherit; 
+    display: inline-block; 
+}
+
+#cover-image {
+    position: fixed;
+    top: 75%; 
+    left: 48.5%;
+    transform: translate(-50%, -50%);
+    background: url('../img/cover.png') no-repeat center center;
+    background-size: contain;
+    width: 200px;
+    height: 200px; 
+    cursor: pointer;
+}
+
 
 
 /* .centered-content {
