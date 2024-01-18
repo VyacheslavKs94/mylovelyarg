@@ -5,7 +5,7 @@ body, html {
     background-image: url('img/run.jpg');
     background-size: cover;
     background-position: center;
-    color: white;
+    color: rgb(9, 49, 52);
     text-align: center;
     font-size: 16px;
 }
