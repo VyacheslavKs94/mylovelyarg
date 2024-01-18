@@ -5,7 +5,9 @@ body, html {
     background-image: url('https://mrsterling.quest/img/run.jpg');
     background-size: cover;
     background-position: center;
-    color: rgb(9, 49, 52);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: rgb(225, 225, 225);
     text-align: center;
     font-size: 16px;
 }
@@ -17,7 +19,7 @@ body, html {
 }
 
 h1 {
-    font-size: 3.5em;
+    font-size: 5.5em;
     margin-bottom: 20px;
 }
 
@@ -31,7 +33,7 @@ h2 {
 }
 
 .progress-bar {
-    background: rgba(145, 22, 156, 0.2);
+    background: rgba(16, 94, 116, 0.384);
     border-radius: 25px;
     margin-bottom: 20px; 
     padding: 15px;
@@ -59,7 +61,7 @@ h2 {
 }
 
 .success .progress {
-    background: rgb(26, 168, 26); 
+    background: rgb(16, 111, 16); 
 }
 
 .pending .progress {
@@ -68,12 +70,12 @@ h2 {
 
 @media (max-width: 600px) {
     .container {
-        width: 90%;
+        width: 80%;
     }
     h1 {
-        font-size: 2em;
+        font-size: 4em;
     }
     h2 {
-        font-size: 1.75em;
+        font-size: 2em;
     }
 }
