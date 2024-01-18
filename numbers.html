@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infiltration: Progress Dashboard</title>
+    <link rel="stylesheet" href="css/numbers.css">
+    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Project Amaryllis</h1>
+        <div class="category">
+            <h2>Mission Code Names</h2>
+            <div class="progress-bar success" id="firewallBreach">
+                <div class="progress"></div>
+                <span>Vector Whisperer: Success</span>
+            </div>
+            <div class="progress-bar success" id="coreDump">
+                <div class="progress"></div>
+                <span>Network Frame Anomaly: Success</span>
+            </div>
+            <div class="progress-bar success" id="systemOverride">
+                <div class="progress"></div>
+                <span>Firmware Mage: Success</span>
+            </div>
+            <div class="progress-bar success" id="bioMads">
+                <div class="progress"></div>
+                <span>Binomial Nomenclature: Success</span>
+            </div>
+        </div>
+        <div class="category">
+            <h2>Pending Operations</h2>
+            <div class="progress-bar pending" id="networkInfiltration">
+                <div class="progress"></div>
+                <span>Aegis Buffer: Pending</span>
+            </div>
+            <div class="progress-bar pending" id="encryptionBreak">
+                <div class="progress"></div>
+                <span>Unseen Binary: Pending</span>
+            </div>
+        </div>
+        <div class="category">
+            <h2>Secret Operation</h2>
+            <div class="progress-bar" id="secret">
+                <div class="progress"></div>
+                <span>Unknown Activity: 0/10000 Requests</span>
+            </div>
+        </div>  
+    </div>
+    <script src="js/numbers.js"></script>
+</body>
+</html>
