@@ -9,7 +9,7 @@ function updateProgress(barId, currentActivations, totalActivations) {
 updateProgress('firewallBreach', 333, 333); 
 updateProgress('coreDump', 333, 333); 
 updateProgress('systemOverride', 333, 333); 
-updateProgress('networkInfiltration', 102, 333); 
-updateProgress('encryptionBreak', 1, 333); 
+updateProgress('networkInfiltration', 258, 333); 
+updateProgress('encryptionBreak', 112, 333); 
 updateProgress('bioMads', 2000, 2000); 
 updateProgress('secret', 0, 10000); 
