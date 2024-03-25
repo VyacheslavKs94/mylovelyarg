@@ -12,4 +12,4 @@ updateProgress('systemOverride', 333, 333);
 updateProgress('networkInfiltration', 333, 333); 
 updateProgress('encryptionBreak', 333, 333); 
 updateProgress('bioMads', 2000, 2000); 
-updateProgress('secret', 8564, 10000); 
+updateProgress('secret', 10000, 10000); 
