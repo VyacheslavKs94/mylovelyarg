@@ -29,7 +29,7 @@ body {
     position: absolute; 
     left: 50%;
     transform: translateX(-50%); 
-    display: none; /* Ensure text is not visible initially */
+    display: none;
     width: 100%;
     text-align: center;
 }

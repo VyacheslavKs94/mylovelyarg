@@ -10,23 +10,23 @@ let speed = 2000; // Starting speed
 function displayWord() {
     if (speed < 2) {
         wordDisplay.style.display = 'none';
-        container.style.display = 'flex'; // Use flex to keep the structure intact
+        container.style.display = 'flex'; 
         finalImage.style.display = 'block';
 
         setTimeout(() => {
-            topText.style.display = 'block'; // Show top text after 1 second
+            topText.style.display = 'block'; 
             setTimeout(() => {
-                bottomText.style.display = 'block'; // Show bottom text after another second
+                bottomText.style.display = 'block'; 
             }, 1750);
         }, 1000);
 
-        return; // Stop the function from looping
+        return; 
     }
 
     wordDisplay.innerText = words[index++];
     if (index >= words.length) index = 0;
     setTimeout(displayWord, speed);
-    speed *= 0.90; // Gradually increase speed
+    speed *= 0.90;
 }
 
 displayWord();
