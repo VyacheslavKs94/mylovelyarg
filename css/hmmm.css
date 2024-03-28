@@ -11,7 +11,7 @@ body {
 }
 
 .word-display {
-    font-size: 200px; 
+    font-size: 200px;
     text-align: center;
 }
 
@@ -21,27 +21,29 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative; 
-}
-
-.top-text, .bottom-text {
-    font-size: 90px; 
-    position: absolute; 
-    left: 50%;
-    transform: translateX(-50%); 
-    display: none;
-    width: 100%;
-    text-align: center;
+    position: relative;
 }
 
 .top-text {
+    font-size: 100px;
+    position: absolute;
+    left: 50%;
     top: 0;
-    transform: translate(-50%, -100%); 
+    transform: translate(-50%, -100%);
+    width: 100%;
+    text-align: center;
+    display: none;
 }
 
 .bottom-text {
+    font-size: 60px; 
+    position: absolute;
+    left: 50%;
     bottom: 0;
-    transform: translate(-50%, 100%); 
+    transform: translate(-50%, 100%);
+    width: 100%;
+    text-align: center;
+    display: none;
 }
 
 img {
