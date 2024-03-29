@@ -1,4 +1,4 @@
-const words = ["WHAT", "IF", "YOU", "COULD", "MAKE", "YOUR", "OWN", "RULES"];
+const words = ["WHAT", "IF", "YOU", "COULD", "MAKE", "YOUR", "OWN", "RULES", "?"];
 const wordDisplay = document.getElementById("wordDisplay");
 const finalImage = document.getElementById("finalImage");
 const topText = document.getElementById("topText");
