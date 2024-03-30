@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background-image: url('img/clickerbg.png');
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.click-area {
+    position: relative;
+    display: inline-block; /* Encapsulate the area around the main image */
+    perspective: 1000px;
+}
+
+.clickable-image {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 500px;
+    transition: transform 0.3s;
+    transform-style: preserve-3d; /* This line is important for 3D rotation */
+}
+
+.bonus-image {
+    position: absolute;
+    max-width: 10%;
+    cursor: pointer;
+    display: none; /* Initially hidden */
+}
+
+.tap-count {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.game-over-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    text-align: center;
+    padding: 20px;
+}
+
+#restartButton {
+    margin-top: 20px; /* Add more space above the button */
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+    text-decoration: underline; /* Make it look like a clickable text */
+}

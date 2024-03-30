@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Clicker</title>
+    <link rel="stylesheet" href="css/clicker.css">
+</head>
+<body>
+    <div id="tapCount" class="tap-count">Taps: 0</div>
+    <div id="clickArea" class="click-area">
+        <img id="clickableImage" src="img/lifecoin.png" class="clickable-image" alt="Lifecoin" draggable="false">
+        <img id="bonusImage" src="img/hehe.png" class="bonus-image" alt="Bonus" draggable="false" style="display: none;">
+    </div>
+    <div id="gameOverMessage" class="game-over-message" style="display: none;">
+        <p id="gameOverText"></p>
+        <p id="restartButton" style="cursor: pointer; text-decoration: underline;">START AGAIN</p>
+    </div>    
+    <div id="countdown" class="countdown"></div>
+    <script src="js/clicker.js"></script>
+    <script type="module" src="js/firebase-init.js"></script>    
+</body>
+</html>
