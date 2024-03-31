@@ -7,31 +7,37 @@
     <link rel="stylesheet" href="css/clicker.css">
 </head>
 <body>
-    <div id="tapCount" class="tap-count">Taps: 0</div>
+    <div class="timer-record">
+        Time: <span id="timer">0s</span> | Last record: <span id="lastRecord">0s</span>
+    </div>
+    <div id="tapCount" class="tap-count">Taps: 0</div>    
     <div id="clickArea" class="click-area">
         <img id="clickableImage" src="img/lifecoin.png" class="clickable-image" alt="Lifecoin" draggable="false">
+        <div id="countdown" class="countdown"></div>
         <img id="bonusImage" src="img/hehe.png" class="bonus-image" alt="Bonus" draggable="false" style="display: none;">
-    </div>
+    </div>    
     <div id="gameOverMessage" class="game-over-message" style="display: none;">
         <p id="gameOverText"></p>
         <p id="restartButton" style="cursor: pointer; text-decoration: underline;">START AGAIN</p>
+        <div id="scoreEntry" style="display: none;">
+            <input type="text" id="playerName" maxlength="5" placeholder="Name" />
+            <button onclick="saveScore()">Save Score</button>
+        </div>
     </div>    
-    <div id="countdown" class="countdown"></div>
     <div id="challengeQuestion" style="display: none;">
         <p>Fix servers?</p>
         <button onclick="answerChallenge(true)">Yes</button>
         <button onclick="answerChallenge(false)">No</button>
     </div>
-    <!-- Place this inside your <body> tag where appropriate -->
-<div id="scoreEntry" style="display: none;">
-    <input type="text" id="playerName" maxlength="5" placeholder="Name" />
-    <button onclick="saveScore()">Save Score</button>
-</div>
 <div id="leaderboard" style="display: none;">
     <h2>Leaderboard</h2>
     <div id="scoresList"></div>
 </div>
-<button onclick="toggleLeaderboard()">Leaderboards</button>
+<div id="leaderboardWindow" class="game-over-message" style="display: none;">
+    <h2>ECHO CLICKERS</h2>
+    <div id="scoresListWindow"></div>
+</div>
+<p id="toggleLeaderboard" style="cursor: pointer; text-decoration: underline;">LEADERBOARD</p>
 <script type="module" src="js/firebase-init.js"></script>
 <script src="js/clicker.js"></script>
 </body>

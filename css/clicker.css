@@ -30,6 +30,16 @@ body {
     transform-style: preserve-3d; /* This line is important for 3D rotation */
 }
 
+.countdown {
+    position: absolute;
+    bottom: -50px; /* Adjust as needed to place under the coin */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    width: auto;
+    text-align: center;
+    user-select: none;
+}
+
 @media (orientation: landscape) {
     .clickable-image {
         max-height: 80vh; /* Limit the size in landscape orientation */
@@ -76,12 +86,4 @@ body {
     border: none;
     color: white;
     text-decoration: underline; /* Make it look like a clickable text */
-}
-
-.countdown {
-    position: absolute;
-    top: 0; /* Adjust based on layout */
-    width: 100%;
-    text-align: center;
-    user-select: none;
 }
