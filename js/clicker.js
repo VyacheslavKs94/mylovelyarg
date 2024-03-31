@@ -9,6 +9,35 @@ let gameStarted = false;
 let startTime = null;
 let lastTime = 0; // To keep track of the last run time
 let scoreToSave = 0;
+let bannedWords = [];
+
+function getBannedWords() {
+    return new Promise((resolve, reject) => {
+        const db = window.db;
+        const bannedWordsRef = window.firebaseRef(db, 'bannedWords/');
+        window.firebaseOnValue(bannedWordsRef, (snapshot) => {
+            bannedWords = Object.values(snapshot.val() || {}).map(item => Object.values(item)[0]);
+            console.log("Banned words loaded:", bannedWords);
+            if (bannedWords.length > 0) {
+                resolve(bannedWords); // Resolve with the banned words
+            } else {
+                reject(new Error("No banned words found"));
+            }
+        });
+    });
+}
+
+function checkForBannedWords(nickname) {
+    console.log("Checking for banned words in nickname:", nickname);
+    for (const word of bannedWords) {
+        if (nickname.toLowerCase().includes(word.toLowerCase())) {
+            console.log("Banned word found:", word); // Debug log to verify which banned word was found
+            alert("Your nickname contains a banned word. Please choose another nickname.");
+            return false;
+        }
+    }
+    return true;
+}
 
 const tapCountDisplay = document.getElementById('tapCount');
 const countdownDisplay = document.getElementById('countdown');
@@ -29,8 +58,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('lastRecord').textContent = `${lastTime}s`;
     tapCountDisplay.textContent = `Taps: ${tapCount} | Last Score: ${lastScore}`;
-});
 
+    // Fetch banned words when the document loads
+    getBannedWords().then(() => {
+        console.log("Banned words are loaded.");
+    }).catch(error => {
+        console.error("Error loading banned words:", error);
+    });
+});
 
 function updateTapDisplay() {
     tapCountDisplay.textContent = `Taps: ${tapCount} | Last Score: ${lastScore}`;
@@ -83,30 +118,34 @@ function resetGame() {
 }
 
 function saveScore() {
-    const nickname = document.getElementById('playerName').value;
+    const nickname = document.getElementById('playerName').value.trim();
     if (nickname.length === 0) {
         alert("ENTER YOUR NICKNAME");
         return;
     }
 
-    // Use scoreToSave which holds the score at the time of game reset
-    const score = scoreToSave;
+    if (!checkForBannedWords(nickname)) {
+        alert("What?");
+        return; // Make sure to exit the function here to prevent saving
+    }
 
+    // If nickname is valid, proceed to save the score
+    const score = scoreToSave;
     const db = window.db;
     const scoresRef = window.firebaseRef(db, 'scores/');
     const newScoreRef = window.firebasePush(scoresRef);
     window.firebaseSet(newScoreRef, {
         nickname: nickname,
         score: score,
-        timeSpent: timeSpent, // Save the time spent along with the score
         timestamp: window.firebaseServerTimestamp()
     });
-
-    // No need to update lastScore here as it's already updated in resetGame when a new high score is achieved
 
     scoreEntry.style.display = 'none';
     gameOverMessage.style.display = 'none';
 }
+
+
+
 
 leaderboardWindow.addEventListener('click', function(event) {
     if (event.target === this) {
