@@ -1,15 +1,14 @@
 let tapCount = 0;
-let lastScore = 0;  
-let countdownValue = 10; 
+let lastScore = 0;  // To keep track of the highest score
+let countdownValue = 10; // Starting countdown value
 let countdownInterval;
-let timerInterval; 
+let timerInterval; // Interval for the timer display
 let challengeActive = false;
-let challengeThreshold = 100; 
+let challengeThreshold = 100; // Initial threshold for challenge appearance, can be randomized later
 let gameStarted = false;
 let startTime = null;
-let lastTime = 0; 
+let lastTime = 0; // To keep track of the last run time
 let scoreToSave = 0;
-let bannedWords = [];
 
 const tapCountDisplay = document.getElementById('tapCount');
 const countdownDisplay = document.getElementById('countdown');
@@ -30,69 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('lastRecord').textContent = `${lastTime}s`;
     tapCountDisplay.textContent = `Taps: ${tapCount} | Last Score: ${lastScore}`;
-
-    // Fetch banned words when the document loads
-    getBannedWords()
-        .then(() => {
-            saveScore(); 
-        })
-        .catch((error) => {
-            console.error('Error fetching banned words:', error);
-        });
 });
 
-function getBannedWords() {
-    return new Promise((resolve, reject) => {
-        const db = window.db;
-        const bannedWordsRef = window.firebaseRef(db, 'bannedWords/');
-        window.firebaseOnValue(bannedWordsRef, (snapshot) => {
-            bannedWords = Object.values(snapshot.val() || {});
-            resolve(); 
-        });
-    });
-}
-
-function checkForBannedWords(nickname) {
-    return new Promise((resolve, reject) => {
-        for (const word of bannedWords) {
-            if (nickname.toLowerCase().includes(word.toLowerCase())) {
-                alert("Your nickname contains a banned word. Please choose another nickname.");
-                reject(); 
-                return;
-            }
-        }
-        resolve();
-    });
-}
-
-function saveScore() {
-    const nickname = document.getElementById('playerName').value;
-    if (nickname.length === 0) {
-        alert("ENTER YOUR NICKNAME");
-        return;
-    }
-
-    checkForBannedWords(nickname)
-        .then(() => {
-            const score = scoreToSave;
-
-            const db = window.db;
-            const scoresRef = window.firebaseRef(db, 'scores/');
-            const newScoreRef = window.firebasePush(scoresRef);
-            window.firebaseSet(newScoreRef, {
-                nickname: nickname,
-                score: score,
-                timestamp: window.firebaseServerTimestamp()
-            });
-
-            scoreEntry.style.display = 'none';
-            gameOverMessage.style.display = 'none';
-        })
-        .catch(() => {
-            alert("Your nickname contains a banned word. Please choose another nickname.");
-            document.getElementById('playerName').value = "";
-        });
-}
 
 function updateTapDisplay() {
     tapCountDisplay.textContent = `Taps: ${tapCount} | Last Score: ${lastScore}`;
@@ -108,19 +46,20 @@ function updateTimerDisplay() {
 function resetGame() {
     clearInterval(timerInterval);
     const currentScore = tapCount;
-    scoreToSave = currentScore; 
+    scoreToSave = currentScore; // Store the score before resetting
     lastTime = Math.floor((Date.now() - startTime) / 1000);
     document.getElementById('lastRecord').textContent = `${lastTime}s`;
     gameStarted = false;
 
+    // Determine the message and whether to show the score entry field based on the current score
     let message = "Bastion's grandma can tap longer than you, come on!";
     if (currentScore > lastScore) {
         lastScore = currentScore;
         localStorage.setItem('lastScore', lastScore.toString());
         message = "New high score! Enter your name to save your record.";
-        scoreEntry.style.display = 'block'; 
+        scoreEntry.style.display = 'block'; // Show the score entry for new high score
     } else {
-        scoreEntry.style.display = 'none'; 
+        scoreEntry.style.display = 'none'; // Hide the score entry if not a new high score
         if (currentScore >= 1000 && currentScore < 3000) {
             message = "Good job! I mean, 'good' is a relative term, so...";
         } else if (currentScore >= 3000 && currentScore < 5000) {
@@ -143,6 +82,32 @@ function resetGame() {
     challengeActive = false;
 }
 
+function saveScore() {
+    const nickname = document.getElementById('playerName').value;
+    if (nickname.length === 0) {
+        alert("ENTER YOUR NICKNAME");
+        return;
+    }
+
+    // Use scoreToSave which holds the score at the time of game reset
+    const score = scoreToSave;
+
+    const db = window.db;
+    const scoresRef = window.firebaseRef(db, 'scores/');
+    const newScoreRef = window.firebasePush(scoresRef);
+    window.firebaseSet(newScoreRef, {
+        nickname: nickname,
+        score: score,
+        timeSpent: timeSpent, // Save the time spent along with the score
+        timestamp: window.firebaseServerTimestamp()
+    });
+
+    // No need to update lastScore here as it's already updated in resetGame when a new high score is achieved
+
+    scoreEntry.style.display = 'none';
+    gameOverMessage.style.display = 'none';
+}
+
 leaderboardWindow.addEventListener('click', function(event) {
     if (event.target === this) {
         this.style.display = 'none';
@@ -157,26 +122,21 @@ toggleLeaderboard.addEventListener('click', function() {
     }
 });
 
+
 function getScores() {
     const db = window.db;
     const scoresRef = window.firebaseRef(db, 'scores/');
     window.firebaseOnValue(scoresRef, (snapshot) => {
         const scores = snapshot.val();
         const scoresListWindow = document.getElementById('scoresListWindow');
-        scoresListWindow.innerHTML = ''; 
+        scoresListWindow.innerHTML = ''; // Ensure this element is correctly targeted
 
         const sortedScores = Object.values(scores).sort((a, b) => b.score - a.score).slice(0, 15);
 
         sortedScores.forEach((score) => {
-            checkForBannedWords(score.nickname)
-                .then(() => {
-                    const div = document.createElement('div');
-                    div.textContent = `${score.nickname}: ${score.score}`;
-                    scoresListWindow.appendChild(div);
-                })
-                .catch(() => {
-                    console.log(`Nickname "${score.nickname}" contains a banned word, skipping.`);
-                });
+            const div = document.createElement('div');
+            div.textContent = `${score.nickname}: ${score.score}`;
+            scoresListWindow.appendChild(div);
         });
     });
 }
@@ -203,7 +163,7 @@ function startCountdown() {
 clickableImage.addEventListener('click', (e) => {
     if (!gameStarted) {
         gameStarted = true;
-        startTime = Date.now(); 
+        startTime = Date.now(); // Reset startTime on new game start
         timerInterval = setInterval(updateTimerDisplay, 1000);
         startCountdown();
     }
@@ -253,7 +213,7 @@ restartButton.addEventListener('click', () => {
     tapCountDisplay.textContent = `Taps: ${tapCount}`;
     countdownDisplay.textContent = '';
     gameOverMessage.style.display = 'none';
-    clearInterval(timerInterval); 
+    clearInterval(timerInterval); // Stop the timer when the game is restarted
     startCountdown();
 });
 
