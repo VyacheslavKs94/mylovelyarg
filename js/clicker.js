@@ -11,7 +11,7 @@ const gameOverText = document.getElementById('gameOverText');
 const restartButton = document.getElementById('restartButton');
 
 function resetGame() {
-    let message = "Bastion's grandma can tap more than you, come on!";
+    let message = "Bastion's grandma can tap longer than you, come on!";
     if (tapCount >= 1000 && tapCount < 3000) {
         message = "Good job! I mean, 'good' is a relative term, so...";
     } else if (tapCount >= 3000 && tapCount < 5000) {
