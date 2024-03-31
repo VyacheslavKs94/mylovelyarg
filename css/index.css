@@ -1,21 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap&subset=cyrillic');
+
 body {
     margin: 0;
     height: 100vh;
-    background-color: #333; /* Dark gray background */
+    background-color: #333;
     display: flex;
     justify-content: center;
+    align-items: center;
+    font-family: 'Bebas Neue', sans-serif;
+    color: white;
+}
+
+.typing {
+    font-size: 155px;
+    display: flex;
     align-items: center;
 }
 
 .cursor {
-    width: 20px;
-    height: 20px;
+    display: inline-block;
+    width: 15px; /* Smaller than text size */
+    height: 15px; /* Smaller than text size */
     background-color: white;
-    animation: blink 1s step-start infinite;
+    margin-left: 5px;
+    animation: blink 1.5s step-start infinite;
 }
 
 @keyframes blink {
     50% {
         opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .typing {
+        font-size: 65px; /* Smaller font size for mobile devices */
+    }
+
+    .cursor {
+        width: 12px;
+        height: 12px;
     }
 }
