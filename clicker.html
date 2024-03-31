@@ -17,7 +17,22 @@
         <p id="restartButton" style="cursor: pointer; text-decoration: underline;">START AGAIN</p>
     </div>    
     <div id="countdown" class="countdown"></div>
-    <script src="js/clicker.js"></script>
-    <script type="module" src="js/firebase-init.js"></script>    
+    <div id="challengeQuestion" style="display: none;">
+        <p>Fix servers?</p>
+        <button onclick="answerChallenge(true)">Yes</button>
+        <button onclick="answerChallenge(false)">No</button>
+    </div>
+    <!-- Place this inside your <body> tag where appropriate -->
+<div id="scoreEntry" style="display: none;">
+    <input type="text" id="playerName" maxlength="5" placeholder="Name" />
+    <button onclick="saveScore()">Save Score</button>
+</div>
+<div id="leaderboard" style="display: none;">
+    <h2>Leaderboard</h2>
+    <div id="scoresList"></div>
+</div>
+<button onclick="toggleLeaderboard()">Leaderboards</button>
+<script type="module" src="js/firebase-init.js"></script>
+<script src="js/clicker.js"></script>
 </body>
 </html>
