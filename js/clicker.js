@@ -58,6 +58,48 @@ const leaderboardWindow = document.getElementById('leaderboardWindow');
 const toggleLeaderboard = document.getElementById('toggleLeaderboard');
 
 document.addEventListener('DOMContentLoaded', () => {
+    const hasAgreed = localStorage.getItem('hasAgreedToWarning');
+    if (!hasAgreed) {
+        document.getElementById('warningModal').style.display = 'flex';
+    }
+
+    document.getElementById('agreeButton').addEventListener('click', () => {
+        localStorage.setItem('hasAgreedToWarning', 'true');
+        document.getElementById('warningModal').style.display = 'none';
+    });
+});
+
+const languages = {
+    ru: {
+        warning: [
+            "ЭТОТ КЛИКЕР СОЗДАН АПРЕЛЬСКИМ ДУРАКОМ.",
+            "КЛИКЕР НАХОДИТСЯ В СТАДИИ АЛЬФА ВЕРСИИ 0.00001. ОНА СОДЕРЖИТ БАГИ И СТОЛЬКО ПРОБЛЕМ, ЧТО ВЫ НЕ МОЖЕТЕ СЕБЕ ПРЕДСТАВИТЬ.",
+            "КЛИКЕР МОЖЕТ ПРИВЕСТИ К РИСКУ НЕОСТАНОВИМОЙ ЯРОСТИ, НЕОТВЕЧЕННЫМ В ЖИЗНИ ВОПРОСАМ ИЛИ ЖЕЛАНИЮ ВЫЙТИ НА УЛИЦУ И ПОТРОГАТЬ ТРАВУ.",
+            "НАЖИМАЯ 'СОГЛЫ', ВЫ СОГЛАШАЕТЕСЬ С ЭТИМ.",
+            "ХОТИТЕ СКАЗАТЬ, НА СКОЛЬКО ЭТА ИГРА ГЛУПА, СООБЩИТЬ О БАГЕ ИЛИ ОСТАВИТЬ ОТЗЫВ? ПОСЕТИТЕ СЕРВЕР BULLET ECHO.",
+            "УДАЧИ!"
+        ],
+        agreeButton: "СОГЛЫ 🤝"
+    }
+};
+
+function setLanguage(lang) {
+    if (languages[lang]) {
+        const texts = languages[lang];
+        const paragraphs = document.querySelectorAll('#warningMessage p');
+        texts.warning.forEach((text, index) => {
+            if (paragraphs[index]) {
+                paragraphs[index].textContent = text;
+            }
+        });
+        document.getElementById('agreeButton').textContent = texts.agreeButton;
+    }
+}
+
+const userLang = navigator.language || navigator.userLanguage; 
+setLanguage(userLang.startsWith('ru') ? 'ru' : 'en');
+
+document.addEventListener('DOMContentLoaded', () => {
     const storedLastScore = localStorage.getItem('lastScore');
     const storedLastTime = localStorage.getItem('lastTime');
 
@@ -132,6 +174,10 @@ function saveScore() {
         return;
     }
 
+    // Stop the timer as soon as the game is over, not when the score is saved.
+    const timeSpent = Math.floor((Date.now() - startTime) / 1000); // Save the time spent when game ended
+    clearInterval(timerInterval); // Stop the timer here to prevent it from counting up
+
     window.firebaseGet(window.firebaseRef(window.db, 'bannedWords/')).then((snapshot) => {
         const bannedWordsData = snapshot.val() || {};
         const bannedWords = Object.values(bannedWordsData);
@@ -147,13 +193,12 @@ function saveScore() {
 
         if (!isNicknameBanned) {
             const score = scoreToSave;
-            const timeSpent = Math.floor((Date.now() - startTime) / 1000); // time spent in seconds
             const scoresRef = window.firebaseRef(window.db, 'scores/');
             const newScoreRef = window.firebasePush(scoresRef);
             window.firebaseSet(newScoreRef, {
                 nickname: nickname,
                 score: score,
-                timeSpent: timeSpent, // adding time spent here
+                timeSpent: timeSpent, // Use the saved time spent here
                 timestamp: window.firebaseServerTimestamp()
             }).then(() => {
                 scoreEntry.style.display = 'none';
@@ -168,6 +213,7 @@ function saveScore() {
         console.error("Error checking banned words:", error);
     });
 }
+
 
 function getScores() {
     const db = window.db;

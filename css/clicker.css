@@ -2,46 +2,89 @@ body {
     margin: 0;
     height: 100vh;
     background-image: url('img/clickerbg.png');
-    background-size: cover; /* Cover the entire viewport */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
     font-family: 'Bebas Neue', sans-serif;
-    overflow: hidden; /* Prevent scrolling */
-    touch-action: none; /* Disable touch scrolling */
+    overflow: hidden;
+    touch-action: none;
 }
 
-/* New CSS class for the fly-up effect */
+#warningModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    z-index: 1050; /* High z-index to ensure it's on top */
+}
+
+#warningMessage {
+    background: #333;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    text-align: center;
+    font-size: 25px; /* Adjusted font size here */
+}
+
+/* Increase font size for smaller texts specifically, if needed */
+#warningMessage p {
+    font-size: 24px; /* Larger font size for paragraph texts */
+    margin-bottom: 10px; /* Add space between paragraphs */
+}
+
+#agreeButton {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px; /* Larger font size for button */
+    margin: 20px 2px; /* Add more margin to the top and bottom */
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+
+
 .fly-up-text {
     position: absolute;
-    color: #fff; /* Change color if needed */
-    font-size: 20px; /* Adjust size as needed */
-    z-index: 1000; /* Ensure it's above other elements */
-    pointer-events: none; /* Ignore pointer events */
-    user-select: none; /* Prevent text selection */
-    opacity: 1; /* Start fully visible */
+    color: #fff;
+    font-size: 20px;
+    z-index: 1000;
+    pointer-events: none;
+    user-select: none;
+    opacity: 1;
 }
 
-/* Animation class */
 .animate-fly-up {
     animation: flyUpAndFade 0.8s ease forwards;
 }
 
 @keyframes flyUpAndFade {
     to {
-        transform: translateY(-100px); /* Adjust the value to control how high it flies */
+        transform: translateY(-100px);
         opacity: 0;
     }
 }
 
-
 .click-area {
     position: relative;
-    display: inline-block; /* Encapsulate the area around the main image */
+    display: inline-block;
     perspective: 1000px;
 }
 
@@ -51,14 +94,14 @@ body {
     height: auto;
     max-height: 375px;
     transition: transform 0.3s;
-    transform-style: preserve-3d; /* This line is important for 3D rotation */
+    transform-style: preserve-3d;
 }
 
 .countdown {
     position: absolute;
-    bottom: -50px; /* Adjust as needed to place under the coin */
+    bottom: -50px;
     left: 50%;
-    transform: translateX(-50%); /* Center horizontally */
+    transform: translateX(-50%);
     width: auto;
     text-align: center;
     user-select: none;
@@ -66,32 +109,29 @@ body {
 
 @media (orientation: landscape) {
     .clickable-image {
-        max-height: 80vh; /* Limit the size in landscape orientation */
+        max-height: 80vh;
     }
 }
 
 .bonus-image {
-    transition: opacity 2s; 
+    transition: opacity 2s;
     position: absolute;
     max-width: 10%;
     cursor: pointer;
-    display: none; /* Initially hidden */
+    display: none;
 }
-
-
 
 .tap-count {
     font-size: 48px;
     margin-bottom: 20px;
-    user-select: none; /* Prevent text selection */
+    user-select: none;
 }
 
 @media (max-width: 480px) {
     .tap-count, .timer-record {
-        font-size: 24px; /* adjust the font size as necessary */
+        font-size: 24px;
     }
 }
-
 
 .game-over-message {
     position: fixed;
@@ -106,17 +146,18 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    box-sizing: border-box; /* Make sure padding is included in width/height */
-    overflow-y: auto; /* Allows scrolling if the content is too long */
-    z-index: 1000; /* Ensure it's on top of other elements */
+    box-sizing: border-box;
+    overflow-y: auto;
+    z-index: 1000;
 }
 
 #gameOverText {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     text-align: center;
-    width: 100%; /* Ensure the width takes the full parent container */
-    max-width: 600px; /* Max width can be adjusted as needed */
-    margin: 0 auto; /* Center the text block horizontally */
-    word-break: break-word; /* To prevent overflow by breaking long words */
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    word-break: break-word;
 }
 
 #restartButton {
@@ -126,28 +167,58 @@ body {
     border: none;
     color: white;
     text-decoration: underline;
-    margin-top: 20px; /* Space from the text above */
+    margin-top: 20px;
 }
 
-/* Add this to make sure the input and button fit on mobile screens */
 #scoreEntry {
     display: flex;
-    flex-direction: column; /* Stack them vertically */
-    align-items: center; /* Center them horizontally */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
 }
 
-#scoreEntry input, #scoreEntry button {
-    width: 90%; /* Use less than 100% to account for padding/margins */
-    margin: 10px 0; /* Spacing between input and button */
+#scoreEntry input,
+#scoreEntry button {
+    width: 100%;
+    margin-bottom: 10px;
+    max-width: 300px;
+    margin: 10px auto; /* Auto margins for horizontal centering */
 }
 
-@media (max-width: 480px) {
-    /* Further reduce font sizes for very small screens */
-    #gameOverText {
-        font-size: 24px;
+#scoreEntry button {
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.25rem;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#scoreEntry input {
+    border: 2px solid #ffffff;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+    #scoreEntry input,
+    #scoreEntry button {
+        max-width: 400px;
     }
-    #restartButton {
-        font-size: 20px;
+}
+
+@media (min-width: 1024px) {
+    #gameOverText {
+        font-size: 2.5vw;
     }
 }
