@@ -10,6 +10,8 @@ let startTime = null;
 let lastTime = 0; // To keep track of the last run time
 let scoreToSave = 0;
 let bannedWords = [];
+let nextBonusTarget = randomBetween(15, 55); // Initialize with the first range
+let rangeIncrement = 299;
 
 function getBannedWords() {
     return new Promise((resolve, reject) => {
@@ -143,31 +145,49 @@ function saveScore() {
             }
         }
 
-        if (isNicknameBanned) {
-            gameOverMessage.style.display = 'none'; // Close the game over window immediately
-            resetGame(); // Call resetGame to reset the game state
-            return;
+        if (!isNicknameBanned) {
+            const score = scoreToSave;
+            const timeSpent = Math.floor((Date.now() - startTime) / 1000); // time spent in seconds
+            const scoresRef = window.firebaseRef(window.db, 'scores/');
+            const newScoreRef = window.firebasePush(scoresRef);
+            window.firebaseSet(newScoreRef, {
+                nickname: nickname,
+                score: score,
+                timeSpent: timeSpent, // adding time spent here
+                timestamp: window.firebaseServerTimestamp()
+            }).then(() => {
+                scoreEntry.style.display = 'none';
+                gameOverMessage.style.display = 'none';
+                resetGame();
+            });
+        } else {
+            gameOverMessage.style.display = 'none';
+            resetGame();
         }
-
-        const score = scoreToSave;
-        const scoresRef = window.firebaseRef(window.db, 'scores/');
-        const newScoreRef = window.firebasePush(scoresRef);
-        window.firebaseSet(newScoreRef, {
-            nickname: nickname,
-            score: score,
-            timestamp: window.firebaseServerTimestamp()
-        });
-
-        scoreEntry.style.display = 'none';
-        gameOverMessage.style.display = 'none';
-
-        // Reset the game state and start a new game session
-        resetGame();
     }).catch(error => {
         console.error("Error checking banned words:", error);
     });
 }
 
+function getScores() {
+    const db = window.db;
+    const scoresRef = window.firebaseRef(db, 'scores/');
+    window.firebaseOnValue(scoresRef, (snapshot) => {
+        const scores = snapshot.val();
+        const scoresListWindow = document.getElementById('scoresListWindow');
+        scoresListWindow.innerHTML = ''; // Clear existing list
+
+        const sortedScores = Object.values(scores).sort((a, b) => {
+            return b.score - a.score || a.timeSpent - b.timeSpent; // Sort by score and then by time if scores are equal
+        }).slice(0, 15); // get top 15 scores
+
+        sortedScores.forEach((score) => {
+            const div = document.createElement('div');
+            div.textContent = `${score.nickname}: ${score.score} points (${score.timeSpent}s)`;
+            scoresListWindow.appendChild(div);
+        });
+    });
+}
 
 leaderboardWindow.addEventListener('click', function(event) {
     if (event.target === this) {
@@ -184,23 +204,7 @@ toggleLeaderboard.addEventListener('click', function() {
 });
 
 
-function getScores() {
-    const db = window.db;
-    const scoresRef = window.firebaseRef(db, 'scores/');
-    window.firebaseOnValue(scoresRef, (snapshot) => {
-        const scores = snapshot.val();
-        const scoresListWindow = document.getElementById('scoresListWindow');
-        scoresListWindow.innerHTML = ''; // Ensure this element is correctly targeted
 
-        const sortedScores = Object.values(scores).sort((a, b) => b.score - a.score).slice(0, 15);
-
-        sortedScores.forEach((score) => {
-            const div = document.createElement('div');
-            div.textContent = `${score.nickname}: ${score.score}`;
-            scoresListWindow.appendChild(div);
-        });
-    });
-}
 
 function adjustCountdownValue() {
     countdownValue = 10 - Math.min(8, Math.floor(tapCount / 1000));
@@ -253,23 +257,62 @@ clickableImage.addEventListener('click', (e) => {
             showBonusImage();
         }
     }
+    updateBonusImageVisibility();
+    createFlyUpText(e.clientX, e.clientY); // Pass the click coordinates
 });
 
-clickableImage.addEventListener('contextmenu', (e) => {
-    e.preventDefault(); // Prevents right-click menu on the coin image
-});
+function createFlyUpText(x, y) {
+    const flyText = document.createElement('div');
+    flyText.classList.add('fly-up-text');
+    flyText.textContent = '+1';
+
+    // Append the flyText to the document body or a specific container div
+    document.body.appendChild(flyText);
+
+    // Adjust the position to be at the click location
+    // You might need to adjust these values to position the "+1" correctly over the coin
+    flyText.style.left = `${x}px`;
+    flyText.style.top = `${y}px`;
+
+    // Add the animation class to initiate the fly-up and fade-out animation
+    flyText.classList.add('animate-fly-up');
+
+    // Remove the element from the DOM after the animation is done
+    setTimeout(() => flyText.remove(), 2000); // This should match the duration of your CSS animation
+}
+
 
 
 function showBonusImage() {
     const angle = Math.random() * Math.PI * 2;
-    const radius = 50;
+    const coinRect = clickableImage.getBoundingClientRect();
+    // Ensure the bonus image appears within the coin's radius
+    const radius = Math.min(coinRect.width, coinRect.height) / 4; // adjust this to change the range
     const x = radius * Math.cos(angle);
     const y = radius * Math.sin(angle);
+
+    bonusImage.style.opacity = '0'; // Start with 0 opacity
     bonusImage.style.display = 'block';
     bonusImage.style.position = 'absolute';
     bonusImage.style.left = `calc(50% + ${x}px)`;
     bonusImage.style.top = `calc(50% + ${y}px)`;
     bonusImage.style.transform = 'translate(-50%, -50%)';
+
+    // Gradually increase opacity to 1 for smooth appearance
+    setTimeout(() => bonusImage.style.opacity = '1', 10);
+}
+
+
+function updateBonusImageVisibility() {
+    if (tapCount >= nextBonusTarget) {
+        showBonusImage();
+        nextBonusTarget += randomBetween(100, 199 + rangeIncrement);
+        rangeIncrement += 299; // Increase the range increment step
+    }
+}
+
+function randomBetween(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 restartButton.addEventListener('click', () => {

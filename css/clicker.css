@@ -15,6 +15,30 @@ body {
     touch-action: none; /* Disable touch scrolling */
 }
 
+/* New CSS class for the fly-up effect */
+.fly-up-text {
+    position: absolute;
+    color: #fff; /* Change color if needed */
+    font-size: 20px; /* Adjust size as needed */
+    z-index: 1000; /* Ensure it's above other elements */
+    pointer-events: none; /* Ignore pointer events */
+    user-select: none; /* Prevent text selection */
+    opacity: 1; /* Start fully visible */
+}
+
+/* Animation class */
+.animate-fly-up {
+    animation: flyUpAndFade 0.8s ease forwards;
+}
+
+@keyframes flyUpAndFade {
+    to {
+        transform: translateY(-100px); /* Adjust the value to control how high it flies */
+        opacity: 0;
+    }
+}
+
+
 .click-area {
     position: relative;
     display: inline-block; /* Encapsulate the area around the main image */
@@ -25,7 +49,7 @@ body {
     width: auto;
     max-width: 100%;
     height: auto;
-    max-height: 500px;
+    max-height: 375px;
     transition: transform 0.3s;
     transform-style: preserve-3d; /* This line is important for 3D rotation */
 }
@@ -47,17 +71,27 @@ body {
 }
 
 .bonus-image {
+    transition: opacity 2s; 
     position: absolute;
     max-width: 10%;
     cursor: pointer;
     display: none; /* Initially hidden */
 }
 
+
+
 .tap-count {
     font-size: 48px;
     margin-bottom: 20px;
     user-select: none; /* Prevent text selection */
 }
+
+@media (max-width: 480px) {
+    .tap-count, .timer-record {
+        font-size: 24px; /* adjust the font size as necessary */
+    }
+}
+
 
 .game-over-message {
     position: fixed;
@@ -68,22 +102,52 @@ body {
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     display: flex;
-    flex-direction: column; /* Align children vertically */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 32px;
-    text-align: center;
     padding: 20px;
-    justify-content: center;
+    box-sizing: border-box; /* Make sure padding is included in width/height */
+    overflow-y: auto; /* Allows scrolling if the content is too long */
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
+
+#gameOverText {
     text-align: center;
+    width: 100%; /* Ensure the width takes the full parent container */
+    max-width: 600px; /* Max width can be adjusted as needed */
+    margin: 0 auto; /* Center the text block horizontally */
+    word-break: break-word; /* To prevent overflow by breaking long words */
 }
 
 #restartButton {
-    margin-top: 20px; /* Add more space above the button */
     font-size: 24px;
     cursor: pointer;
     background: none;
     border: none;
     color: white;
-    text-decoration: underline; /* Make it look like a clickable text */
+    text-decoration: underline;
+    margin-top: 20px; /* Space from the text above */
+}
+
+/* Add this to make sure the input and button fit on mobile screens */
+#scoreEntry {
+    display: flex;
+    flex-direction: column; /* Stack them vertically */
+    align-items: center; /* Center them horizontally */
+    width: 100%;
+}
+
+#scoreEntry input, #scoreEntry button {
+    width: 90%; /* Use less than 100% to account for padding/margins */
+    margin: 10px 0; /* Spacing between input and button */
+}
+
+@media (max-width: 480px) {
+    /* Further reduce font sizes for very small screens */
+    #gameOverText {
+        font-size: 24px;
+    }
+    #restartButton {
+        font-size: 20px;
+    }
 }
