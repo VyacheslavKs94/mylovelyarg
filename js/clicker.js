@@ -130,28 +130,25 @@ function saveScore() {
         return;
     }
 
-    const bannedWordsRef = window.firebaseRef(window.db, 'bannedWords/');
-
-    window.firebaseGet(bannedWordsRef).then((snapshot) => {
+    window.firebaseGet(window.firebaseRef(window.db, 'bannedWords/')).then((snapshot) => {
         const bannedWordsData = snapshot.val() || {};
-        const bannedWords = Object.values(bannedWordsData); // Directly get the values
-        console.log("Banned words checked:", bannedWords);
-    
+        const bannedWords = Object.values(bannedWordsData);
+
         let isNicknameBanned = false;
         for (const word of bannedWords) {
             if (nickname.toLowerCase().includes(word.toLowerCase())) {
-                alert("Uhhh... it doesn't look like your in-game ID...");
+                alert("No chance that it's your In-Game ID. Score not counted.");
                 isNicknameBanned = true;
                 break;
             }
         }
-    
+
         if (isNicknameBanned) {
-            gameOverMessage.style.display = 'none'; // Hide the game over message window
-            return; // Exit the function to prevent saving the score
+            gameOverMessage.style.display = 'none'; // Close the game over window immediately
+            resetGame(); // Call resetGame to reset the game state
+            return;
         }
 
-        // If the nickname is not banned, proceed with saving the score
         const score = scoreToSave;
         const scoresRef = window.firebaseRef(window.db, 'scores/');
         const newScoreRef = window.firebasePush(scoresRef);
@@ -163,10 +160,14 @@ function saveScore() {
 
         scoreEntry.style.display = 'none';
         gameOverMessage.style.display = 'none';
+
+        // Reset the game state and start a new game session
+        resetGame();
     }).catch(error => {
         console.error("Error checking banned words:", error);
     });
 }
+
 
 leaderboardWindow.addEventListener('click', function(event) {
     if (event.target === this) {
