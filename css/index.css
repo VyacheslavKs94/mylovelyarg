@@ -11,6 +11,22 @@ body {
     color: white;
 }
 
+.central-click {
+    position: absolute;
+    font-size: 155px;
+    color: white;
+    text-decoration: none;
+    z-index: 10;
+}
+
+.random-click {
+    position: absolute;
+    font-size: 50px; /* Smaller than the central click */
+    color: white;
+    opacity: 0.5; /* Less prominent than the central click */
+}
+
+
 .typing {
     font-size: 155px;
     display: flex;
