@@ -29,13 +29,19 @@ function getBannedWords() {
 
 function checkForBannedWords(nickname) {
     console.log("Checking for banned words in nickname:", nickname);
+
+    // Use a regular expression to test for whole word matches
     for (const word of bannedWords) {
-        if (nickname.toLowerCase().includes(word.toLowerCase())) {
-            console.log("Banned word found:", word); // Debug log to verify which banned word was found
+        // Create a regex pattern that matches the word with word boundaries
+        const pattern = new RegExp(`\\b${word}\\b`, 'i'); // 'i' for case-insensitive matching
+
+        if (pattern.test(nickname)) {
+            console.log("Banned word found:", word);
             alert("Your nickname contains a banned word. Please choose another nickname.");
             return false;
         }
     }
+
     return true;
 }
 
@@ -124,28 +130,43 @@ function saveScore() {
         return;
     }
 
-    if (!checkForBannedWords(nickname)) {
-        alert("What?");
-        return; // Make sure to exit the function here to prevent saving
-    }
+    const bannedWordsRef = window.firebaseRef(window.db, 'bannedWords/');
 
-    // If nickname is valid, proceed to save the score
-    const score = scoreToSave;
-    const db = window.db;
-    const scoresRef = window.firebaseRef(db, 'scores/');
-    const newScoreRef = window.firebasePush(scoresRef);
-    window.firebaseSet(newScoreRef, {
-        nickname: nickname,
-        score: score,
-        timestamp: window.firebaseServerTimestamp()
+    window.firebaseGet(bannedWordsRef).then((snapshot) => {
+        const bannedWordsData = snapshot.val() || {};
+        const bannedWords = Object.values(bannedWordsData); // Directly get the values
+        console.log("Banned words checked:", bannedWords);
+    
+        let isNicknameBanned = false;
+        for (const word of bannedWords) {
+            if (nickname.toLowerCase().includes(word.toLowerCase())) {
+                alert("Uhhh... it doesn't look like your in-game ID...");
+                isNicknameBanned = true;
+                break;
+            }
+        }
+    
+        if (isNicknameBanned) {
+            gameOverMessage.style.display = 'none'; // Hide the game over message window
+            return; // Exit the function to prevent saving the score
+        }
+
+        // If the nickname is not banned, proceed with saving the score
+        const score = scoreToSave;
+        const scoresRef = window.firebaseRef(window.db, 'scores/');
+        const newScoreRef = window.firebasePush(scoresRef);
+        window.firebaseSet(newScoreRef, {
+            nickname: nickname,
+            score: score,
+            timestamp: window.firebaseServerTimestamp()
+        });
+
+        scoreEntry.style.display = 'none';
+        gameOverMessage.style.display = 'none';
+    }).catch(error => {
+        console.error("Error checking banned words:", error);
     });
-
-    scoreEntry.style.display = 'none';
-    gameOverMessage.style.display = 'none';
 }
-
-
-
 
 leaderboardWindow.addEventListener('click', function(event) {
     if (event.target === this) {
@@ -233,6 +254,11 @@ clickableImage.addEventListener('click', (e) => {
     }
 });
 
+clickableImage.addEventListener('contextmenu', (e) => {
+    e.preventDefault(); // Prevents right-click menu on the coin image
+});
+
+
 function showBonusImage() {
     const angle = Math.random() * Math.PI * 2;
     const radius = 50;
@@ -248,12 +274,13 @@ function showBonusImage() {
 restartButton.addEventListener('click', () => {
     gameStarted = false;
     tapCount = 0;
-    adjustCountdownValue();
+    adjustCountdownValue(); // Recalculate the countdown value based on the new tap count
     tapCountDisplay.textContent = `Taps: ${tapCount}`;
-    countdownDisplay.textContent = '';
+    countdownDisplay.textContent = `Reset in: ${countdownValue} seconds`; // Initialize the countdown display text
+    countdownDisplay.style.display = 'block'; // Ensure the countdown display is visible
     gameOverMessage.style.display = 'none';
     clearInterval(timerInterval); // Stop the timer when the game is restarted
-    startCountdown();
+    startCountdown(); // Start the countdown again
 });
 
 bonusImage.addEventListener('click', (event) => {

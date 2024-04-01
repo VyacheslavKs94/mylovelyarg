@@ -1,7 +1,7 @@
 // firebase-init.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
-import { getDatabase, ref, set, onValue, push, serverTimestamp} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+import { getDatabase, ref, set, onValue, push, serverTimestamp, get } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAZ0BnnBEyOLwbUlZVYc_JE9TFCcLAtsas",
@@ -18,9 +18,11 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase(app);
 
+// Attach Firebase functions to the window object for global access
 window.db = db;
 window.firebaseRef = ref;
 window.firebaseSet = set;
 window.firebaseOnValue = onValue;
-window.firebasePush = push; // Attach Firebase `push` to the window object
-window.firebaseServerTimestamp = serverTimestamp; // Attach serverTimestamp to the window object
+window.firebasePush = push;
+window.firebaseServerTimestamp = serverTimestamp;
+window.firebaseGet = get; // Add this line to attach 'get' to the window object
