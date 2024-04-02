@@ -15,6 +15,13 @@ body {
     touch-action: none;
 }
 
+.bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+
 #warningModal {
     position: fixed;
     top: 0;
